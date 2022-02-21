@@ -54,7 +54,7 @@ export default ({ params, route, redirect, store }, inject) => {
 
     if (lastStepVisited > 0) {
       lastStepVisitedRoute =
-        lastStepVisited >= totalActiveSteps
+        lastStepVisited > totalActiveSteps
           ? '/thankyou'
           : '/steps/' + lastStepVisited
     } else {

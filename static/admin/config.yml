@@ -2,12 +2,12 @@
 
 backend:
  name: bitbucket
- repo: morphuk/pi-core
+ repo: morphuk/after-training
  branch: master
  auth_type: implicit
- app_id: dnpgRbw7TC4PznTaw4
+ app_id: MNySzhpp7ySjJbwubL
 
-site_url: https://pi-core-master.netlify.app
+site_url: https://after-training.netlify.app
 
 #=== STAGING ===#
 # backend:

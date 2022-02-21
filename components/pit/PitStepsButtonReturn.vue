@@ -48,7 +48,6 @@ export default {
   methods: {
     returnToStep() {
       const redirectRoute = this.$piTool.lastStepVisitedRoute()
-      // console.log(redirectRoute)
       if (redirectRoute) {
         this.$router.push(redirectRoute)
       }
