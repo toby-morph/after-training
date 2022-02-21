@@ -97,7 +97,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['nuxt-polyfill', '@nuxtjs/markdownit'],
+  modules: ['@nuxtjs/auth-next', '@nuxtjs/axios', 'nuxt-polyfill', '@nuxtjs/markdownit'],
 
   markdownit: {
     runtime: true, // Support `$md()`
@@ -145,18 +145,21 @@ export default {
   },
 
   router: {
-    middleware: ['steps-version', 'steps-completed', 'current-page', 'current-step'],
+    middleware: ['auth', 'steps-version', 'steps-completed', 'current-page', 'current-step'],
   },
 
   publicRuntimeConfig: {
     fullScreen: process.env.FULLSCREEN,
     largeText: process.env.LARGE_TEXT,
-    GA_Enabled: process.env.GA_ENABLED,
-    GA_Key: process.env.GA_KEY,
+    amplitudeEnabled: process.env.AMPLITUDE_ENABLED,
+    amplitudeApiKey: process.env.AMPLITUDE_API_KEY,
     cookieControlEnabled: process.env.COOKIE_CONTROL_ENABLED,
     useNuxtImageModule: process.env.USE_NUXT_IMAGE_MODULE,
     offlineEnabled: process.env.OFFLINE_ENABLED,
     versions: process.env.VERSIONS,
+    wpHeadlessUrl: process.env.WP_HEADLESS_URL,
+    siteUrl: process.env.URL,
+    siteAdminEmail: process.env.SITE_ADMIN_EMAIL
   },
 
   polyfill: {
@@ -186,17 +189,39 @@ export default {
     mode: 'out-in'
   },
 
-  // storybook: {
-  //   addons: ['@storybook/addon-a11y'],
-  //   stories: ['~/stories/**/*.stories.*'],
-  //   parameters: {
-  //     backgrounds: {
-  //       default: 'white',
-  //       values: [
-  //         { name: 'white', value: '#ffffff' },
-  //         { name: 'primary', value: '#085680' },
-  //       ],
-  //     },
-  //   },
-  // },
+  auth: {
+    plugins: ['~/plugins/appUser.js'],
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: false,
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+        },
+        user: {
+          property: '',
+        },
+        endpoints: {
+          login: {
+            url: process.env.WP_HEADLESS_URL + '/wp-json/jwt-auth/v1/token',
+            method: 'post',
+            propertyName: 'data.token',
+          },
+          logout: false,
+          user: {
+            url: process.env.WP_HEADLESS_URL + '/wp-json/wp/v2/users/me/',
+            method: 'get',
+          },
+          // user: false,
+          tokenRequired: true,
+          tokenType: 'Bearer',
+          globalToken: true,
+          // localStorage: false,
+        },
+      },
+    },
+  },
 }
