@@ -1,0 +1,20 @@
+{
+  "title": "Choose your version",
+  "page_metadata": {
+    "html_title": "Choose your version",
+    "html_desc": "Choose your version"
+  },
+  "page_content": [
+    {
+      "type": "text_and_image",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec elementum erat. Nulla venenatis scelerisque felis, eget efficitur lacus tincidunt quis. Integer porttitor condimentum dolor. \n\nMaecenas mollis arcu et est eleifend, a eleifend est eleifend. Nam euismod urna eget felis porttitor, quis scelerisque dui vulputate. Nam diam odio, tristique sed est nec, aliquam ullamcorper metus. Pellentesque nec magna urna. Proin placerat ex ac orci ultrices, sit amet sollicitudin lacus luctus. \n\nAenean ac gravida mi. Fusce gravida dapibus leo, ac mattis mi lobortis in. Fusce id arcu finibus, faucibus ligula in, euismod lorem. Aenean in fermentum velit. Ut eget sapien ut sapien viverra pellentesque.",
+      "image": {
+        "url": "PI-19.svg",
+        "width": "550",
+        "height": "338"
+      },
+      "section_label": "Lorem ipsum dolor sit amet..."
+    }
+  ],
+  "page_title": "Choose your version"
+}

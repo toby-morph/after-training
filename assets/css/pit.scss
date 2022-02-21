@@ -1,0 +1,16 @@
+/* shared tooltip styles */
+.start-disabled-message-tooltip,
+.disabled-next-tooltip {
+    bottom: 55px;
+    @screen md {
+        bottom: 70px;
+    }
+}
+.step-icon-disabled-message-tooltip {
+    bottom: 65px;
+    left: -40px;
+}
+
+.main header + .section {
+    padding-top: 0;
+}

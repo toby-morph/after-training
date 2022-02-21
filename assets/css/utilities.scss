@@ -1,0 +1,17 @@
+.flow > * + * {
+    margin-top: var(--flow-space, 1em);
+}
+.out-of-flow {
+    margin-top: 0 !important;
+}
+/* reset base font size when large text option is selected */
+html.large-text {
+    font-size: 20px;
+}
+.stretched-link::after {
+    content: "";
+    @apply z-10 absolute inset-0 bg-transparent pointer-events-auto;
+}
+.grid-gap-4 {
+    grid-gap: 1rem;
+}

@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(~assets/fonts/Quicksand/Quicksand-Medium.ttf) format("truetype");
+}
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(~assets/fonts/Quicksand/Quicksand-SemiBold.ttf) format("truetype");
+}
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(~assets/fonts/Quicksand/Quicksand-Bold.ttf) format("truetype");
+}
+
+:root {
+    --primary-light: hsla(173, 21%, 92%, 1);
+    --primary-mid-light: hsl(201, 71%, 75%, 1);
+    --primary-mid: hsla(201, 54%, 37%, 1);
+    --primary: hsla(201, 88%, 27%, 1);
+    --primary-dark: hsla(201, 88%, 19%, 1);
+    --primary-focusRing: hsla(201, 88%, 27%, .5);
+
+    --secondary-light: hsla(181, 78%, 90%, 1);
+    --secondary-mid: hsla(181, 78%, 40%, 1);
+    --secondary: hsla(181, 78%, 33%, 1);
+    --secondary-dark: hsla(181, 78%, 18%, 1);
+    --secondary-focusRing: hsla(181, 78%, 33%, .5);
+
+    --grey-light: #F9FAFB;
+    --grey-mid-light: #F3F4F6;
+    --grey-mid: #9CA3AF;
+    --grey: #374151;
+    --grey-dark: #111827;
+    --grey-whiteFocusRing: hsla(0, 0%, 100%, .5);
+
+    --notice-light: #ECFDF5;
+
+    --warning: rgb(184, 17, 17);
+    --warning-light: #FEE2E2;
+
+    --success: green;
+    --success-light: hsl(120, 50%, 91%);
+    
+    --font-family: 'Quicksand';
+
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+
+    --font-size-small: 1rem; // '16px'
+    --font-size-base: 1.187rem; // '19px'
+    --font-size-h5: 1.25rem; // '20px'
+    --font-size-h4: 1.625rem; // '26px',
+    --font-size-h3: 2rem; // '32px',
+    --font-size-h2: 2.5rem; // '40px',
+    --font-size-h1: 3rem; // '48px',
+    --font-size-xs-small: 0.875rem; // '14px'
+    --font-size-xs-h1: 2rem; // 32px
+    --font-size-xs-h2: 1.75rem; // 28px;
+    --font-size-xs-h3: 1.5rem; // 24px
+    --font-size-xs-h4: 1.25rem; // 20px
+    --font-size-xs-h5: 1.125rem; // 18px
+    --font-size-xs-base: 1rem; // 16px
+
+    --line-height-small: 1.25rem; // '20px'
+    --line-height-base: 1.687rem; // 27px;
+    --line-height-h5: 1.473rem; // '28px'
+    --line-height-h4: 2.25rem; // '36px',
+    --line-height-h3: 2.75rem; // '44px',
+    --line-height-h2: 3.25rem; // '52px',
+    --line-height-h1: 3.75rem; // '60px',
+    --line-height-xs-small: 1.187rem; // '19px'
+    --line-height-xs-h1: 2.375rem; // 38px
+    --line-height-xs-h2: 2.25rem; // 36px
+    --line-height-xs-h3: 2rem; // 32px
+    --line-height-xs-h4: 1.625rem; // 26px
+    --line-height-xs-h5: 1.5rem; // 24px
+    --line-height-xs-base: 1.5rem; // 24px
+
+    --text-color-h1: var(--primary);
+    --text-color-h2: var(--primary);
+    --text-color-h3: var(--primary);
+    --text-color-h4: var(--dark-grey);
+    --text-color-h5: var(--dark-grey);
+    --text-color-lead: var(--primary);
+    --text-color-bullets: var(--primary);
+    --text-color-body: var(--dark-grey);
+
+    --font-weight-h1: var(--font-weight-medium);
+    --font-weight-h2: var(--font-weight-medium);
+    --font-weight-h3: var(--font-weight-medium);
+    --font-weight-h4: var(--font-weight-semi-bold);
+    --font-weight-h5: var(--font-weight-semi-bold);
+    --font-weight-lead: var(--font-weight-bold);
+    --font-weight-body: var(--font-weight-medium);
+
+    // --footer-bg-color: var(--primary);
+
+    --btn-border-radius: 9999px; //  9999px for fully rounded, 0 for square
+    --btn-border-width: 3px; // 1px - 3px
+
+    --content-section-bg-mid: var(--grey-light);
+    --content-section-bg-light: #ffffff;
+
+    --pre-nav-bg: var(--primary-dark);
+}

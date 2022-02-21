@@ -1,0 +1,141 @@
+.btn {
+    @apply relative inline-block font-bold text-xs-base leading-xs-base group rounded-btn border-btn py-1 px-2 duration-200;
+    > span {
+        @apply relative z-20 flex flex-row items-center justify-between;
+    }
+    .btn-text {
+        @apply block w-full;
+    }
+    .btn-icon {
+        @apply block flex-shrink-0;
+    }
+    @screen md {
+        @apply text-base leading-base;
+    }
+    &[disabled]{
+        @apply opacity-25 cursor-default;
+    }
+    &:not([disabled]) {
+        &:after {
+            content: "";
+            @apply absolute w-full h-full rounded-btn top-0 left-0 opacity-0 transform scale-0;
+        }
+        &:hover {
+            &:after {
+                @apply opacity-100 transition-all ease-out duration-200 transform scale-100;
+            }
+        }
+    }
+    // focus styles
+    &:focus,
+    &:focus-visible {
+        @apply shadow-outline-on-light outline-none;
+    }
+    // adjustments if button is on a dark bg
+    &.btn-on-dark {
+        @apply border-white;
+        &:focus,
+        &:focus-visible {
+            @apply border-white shadow-outline-on-dark;
+        }
+    }
+}
+.btn-primary {
+    @apply bg-white text-primary border-primary;
+    svg {
+        @apply fill-primary;
+    }
+    &:not([disabled]) {
+        &:after {
+            @apply bg-primary;
+        }
+        &:hover {
+            @apply text-white;
+            svg {
+                @apply fill-white;
+            }
+        }
+    }
+}
+.btn-primary-filled {
+    @apply bg-primary text-white border-primary;
+    svg {
+        @apply fill-white;
+    }
+    &:not([disabled]) {
+        &:after {
+            @apply bg-white;
+        }
+        &:hover {
+            @apply text-primary;
+            svg {
+                @apply fill-primary;
+            }
+        }
+    }
+    &:focus,
+    &:focus-visible {
+        @apply border-primary shadow-outline-on-light outline-none;
+    }
+}
+
+.btn-secondary {
+    @apply bg-white text-secondary border-secondary;
+    svg {
+        @apply fill-secondary;
+    }
+    &:not([disabled]) {
+        &:after {
+            @apply bg-secondary;
+        }
+        &:hover {
+            @apply text-white;
+            svg {
+                @apply fill-white;
+            }
+        }
+    }
+    &:focus,
+    &:focus-visible {
+        @apply border-secondary;
+    }
+}
+.btn-secondary-filled {
+    @apply bg-secondary text-white border-secondary;
+    svg {
+        @apply fill-white;
+    }
+    &:not([disabled]) {
+        &:after {
+            @apply bg-white;
+        }
+        &:hover {
+            @apply text-secondary;
+            svg {
+                @apply fill-secondary;
+            }
+        }
+    }
+    &:focus,
+    &:focus-visible {
+        @apply border-secondary;
+    }
+}
+
+.btn-grey {
+    @apply bg-white text-grey border-grey;
+    svg {
+        @apply fill-grey;
+    }
+    &:not([disabled]) {
+        &:after {
+            @apply bg-grey;
+        }
+        &:hover {
+            @apply text-white;
+            svg {
+                @apply fill-white;
+            }
+        }
+    }
+}

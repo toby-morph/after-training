@@ -1,0 +1,16 @@
+{
+  "title": "Accessibility statement",
+  "page_title": "Accessibility statement",
+  "page_metadata": {
+    "html_title": "Accessibility statement",
+    "html_desc": "Accessibility statement"
+  },
+  "page_content": [
+    {
+      "type": "text",
+      "text": "[TRIAL_NAME] is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone, and applying the relevant accessibility standards.\n\n## Conformance status\n\nThe [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/) defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. [TRIAL_NAME Participant Information] is partially conformant with WCAG 2.1 level AA. Partially conformant means that some parts of the content do not fully conform to the accessibility standard.\n\n### Specific exceptions to WCAG 2.1 level AA compliance\n\n* There is no site map or table of contents as the linear navigation path through the content (with no method for the user to jump ahead) mitigates against the usefulness of this feature.\n* Third party frameworks used to build this app - e.g.  [Nuxt](https://nuxtjs.org/) - may contain some minor accessibility issues which are not editable by Digitrial. This includes, for instance, CSS loading animations the duration of which has been to set to longer than 5 seconds. We have attempted to ensure that these exceptions do not impact negatively on user experience.\n* Colour contrast errors relating to the site footer navigation may be picked up by automated accessibility checking tools such as WAVE. These errors relate to the starting state of the effected elements prior to CSS animations occurring. Once the short loading animation is complete the visual appearance of the effected elements complies with WCAG AA colour contrast requirements.\n\n## Screenreaders\n\nThis site has been tested in several screenreaders, including Narrator, NVDA and VoiceOver. We have striven to ensure that all content is accessible to these readers, although we are aware of inconsistencies in how they handle more complex features such as the video transcripts. Please [contact Digitrial](mailto:info@digitrial.com) if you are unable to access any of the website content using your preferred screenreader.\n\n## Feedback\n\nWe welcome your feedback on the accessibility of [TRIAL_NAME Participant Information]. Please let us know if you encounter accessibility barriers on  [TRIAL_NAME Participant Information]:\n\n* Phone: [TRIAL_NAME phone]\n* E-mail: [TRIAL_NAME email](mailto:[TRIAL_NAME email])\n* Postal address: [TRIAL_NAME address]\n\nWe try to respond to feedback within 5 business days.",
+      "section_label": "Conformance status"
+    }
+  ],
+  "page_strapline": ""
+}

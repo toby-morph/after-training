@@ -1,0 +1,129 @@
+body {
+  @apply m-0 text-xs-base leading-xs-base text-color-body font-weight-body;
+  @screen md {
+    @apply text-base leading-base;
+  }
+}
+
+.vue-skip-to.focused {
+  @apply border-primary;
+  a.vue-skip-to__link {
+    @apply bg-primary text-white;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --header-height: 90px;
+  --footer-height: 72px;
+  --site-logo-width: 100px;
+  @screen sm {
+    --site-logo-width: 120px;
+  }
+  @screen md {
+    --footer-height: 100px;
+    --header-height: 110px;
+    --site-logo-width: 165px;
+  }
+  @screen landscape-shallow {
+    --footer-height: 72px;
+  }
+}
+//https://www.codegrepper.com/code-examples/css/iphone+css+only
+// body.ios-toolbar-closed {
+//   @supports (-webkit-touch-callout: none) {
+//     --footer-height: 125px;
+//   }
+// }
+#appLayout {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+#appLayout.has-footer {
+  // see https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+  // height: 100vh;
+  // height: calc(var(--vh, 1vh) * 100);
+
+  /* grid container settings */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "main"
+    "footer";
+
+  > #appContent {
+    grid-area: main;
+
+    // see https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+    height: calc(100vh - var(--footer-height));
+    height: calc(calc(var(--vh, 1vh) * 100) - var(--footer-height));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  > .footer {
+    grid-area: footer;
+
+    height: var(--footer-height);
+    transition: height 0.2s ease-out;
+  }
+}
+
+#appContent { 
+  > .header {
+    height: var(--header-height);
+  }
+  .site-logo {
+    width: var(--site-logo-width);
+  }
+}
+
+#appContent > .header,
+#appLayout .main > .section,
+#appLayout > .footer {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: minmax(20px, 1fr) minmax(0, 540px) minmax(20px, 1fr);
+  @screen md {
+    grid-template-columns: minmax(20px, 1fr) minmax(0, 680px) minmax(20px, 1fr);
+  }
+  @screen lg {
+    grid-template-columns: minmax(20px, 1fr) minmax(0, 900px) minmax(20px, 1fr);
+  }
+  @screen xl {
+    grid-template-columns: minmax(20px, 1fr) minmax(0, 1120px) minmax(20px, 1fr);
+  }
+}
+#appContent > .header > .section,
+#appLayout .main .section-inner,
+#appLayout > .footer > .section {
+  grid-area: 1 / 2 / 1 / 3;
+}
+#appLayout section.full {
+  grid-area: 1 / 1 / 1 / 4;
+}
+
+@media print {
+  .main img {
+    max-width: 50% !important;
+  }
+  #appContent {
+    height: auto !important;
+  }
+  #appContent .main {
+    padding-bottom: 0 !important;
+  }
+  #appContent > .header,
+  #appLayout .main > .section,
+  #appLayout .main > .section div {
+    display: block !important;
+  }
+  #appLayout > .footer {
+    display: none !important;
+  }
+}

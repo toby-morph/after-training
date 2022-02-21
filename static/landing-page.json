@@ -1,0 +1,13 @@
+{
+  "title": "Landing Page",
+  "page_metadata": {
+    "html_title": "Landing Page",
+    "html_desc": "Landing Page"
+  },
+  "page_content": [
+    {
+      "type": "text_only",
+      "text": "This is going to be the landing page for PI tools which might need one - e.g. for users to choose from multiple routes through the app."
+    }
+  ]
+}

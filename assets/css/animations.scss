@@ -1,0 +1,53 @@
+.slide-left-enter-active,
+.slide-right-enter-active {
+    @apply transition-all duration-300 ease-out;
+    /* https://matthewlein.com/tools/ceaser */
+    /* custom */
+    /* transition-timing-function: cubic-bezier(0.620, 0.020, 0.030, 0.930); */
+    /* easeInOutCirc */
+    /* transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); */
+}
+.slide-left-leave-active,
+.slide-right-leave-active {
+    @apply transition-all duration-300 ease-in;
+}
+
+@screen lg {
+    .slide-left-enter-active,
+    .slide-right-enter-active,
+    .slide-left-leave-active,
+    .slide-right-leave-active {
+        @apply duration-400;
+    }
+}
+
+@screen xl {
+    .slide-left-enter-active,
+    .slide-right-enter-active,
+    .slide-left-leave-active,
+    .slide-right-leave-active {
+        @apply duration-500;
+    }
+}
+
+.slide-left-enter {
+    transform: translateX(100%); 
+}
+.slide-left-leave-to {
+    transform: translateX(-100%);
+}
+.slide-right-enter {
+    transform: translateX(-100%); 
+}
+.slide-right-leave-to {
+    transform: translateX(100%);
+}
+
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-in-enter,
+.fade-in-leave-active {
+  opacity: 0;
+}

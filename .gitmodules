@@ -1,0 +1,4 @@
+[submodule "components/lib"]
+	path = components/lib
+	url = git@bitbucket.org:morphuk/morph-component-library.git
+	branch = master

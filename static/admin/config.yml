@@ -1,0 +1,417 @@
+# https://community.netlify.com/t/how-to-login-local-cms/14007/14
+
+backend:
+ name: bitbucket
+ repo: morphuk/pi-core
+ branch: master
+ auth_type: implicit
+ app_id: dnpgRbw7TC4PznTaw4
+
+site_url: https://pi-core-master.netlify.app
+
+#=== STAGING ===#
+# backend:
+#  name: bitbucket
+#  repo: morphuk/pi-core
+#  branch: staging
+#  auth_type: implicit
+#  app_id: e78kyvZHLYsZBuVrXN
+
+# site_url: https://pi-core-staging.netlify.app
+
+# backend:
+#  name: bitbucket
+#  repo: morphuk/patient-information
+#  branch: multi-version
+#  auth_type: implicit
+#  app_id: a4AZXKLzALHFrQKRdv
+
+# site_url: https://pi-multi-version.netlify.app
+
+
+# backend:
+#   name: git-gateway
+#   branch: master
+# local_backend: true
+
+media_folder: assets/img
+public_folder: ''
+
+collections:
+  - name: 'site'
+    label: 'Site'
+    format: 'json'
+    files:       
+      - label: 'Global Site Options'
+        name: 'global site options'
+        file: 'content/site.json'
+        fields: 
+          - label: 'Site details'
+            name: 'site_details'
+            widget: 'object'
+            collapsed: false
+            fields:
+              - { label: 'Organisation name', name: 'organisation_name', widget: 'string' }
+              - { label: 'Site name', name: 'site_name', widget: 'string' }
+              - { label: 'Site url', name: 'site_url', widget: 'string' }
+              - { label: 'Site strapline', name: 'site_strapline', widget: 'string', required: false }
+              - { label: 'Audience', name: 'audience', widget: 'select', options: ['Children', 'Adults', 'Both'] }
+          - label: 'Parent site details'
+            name: 'parent_site_details'
+            widget: 'object'
+            collapsed: false
+            fields:
+              - { label: 'Site name', name: 'site_name', widget: 'string' }
+              - { label: 'Site url', name: 'site_url', widget: 'string' }
+          - label: 'Logo'
+            name: 'site_logo'
+            widget: 'object'
+            collapsed: false
+            fields:
+              - { label: 'Image', name: 'url', widget: 'image' }
+              - { label: 'Alt', name: 'alt', widget: 'string' }
+              - { label: 'Width', name: 'width', widget: 'string', required: false }
+              - { label: 'Height', name: 'height', widget: 'string', required: false }
+          - label: 'Cookie control'
+            name: 'cookie_control'
+            widget: 'object'
+            collapsed: false
+            fields:
+              - { label: 'Cookie modal title', name: 'cookie_modal_title', widget: 'string' }
+              - { label: 'Cookie modal text', name: 'cookie_modal_text', widget: 'markdown' }
+              - { label: "Site uses non-necessary cookies", name: "non_necessary_cookies_used", widget: "boolean", default: false}
+  - name: 'pages'
+    label: 'Pages'
+    format: 'json'
+    folder: 'content/pages'
+    create: true
+    fields: 
+      - {label: 'File name', name: 'title', widget: 'string'}
+      - {label: 'Page title', name: 'page_title', widget: 'string'}
+      - {label: 'Page strapline', name: 'page_strapline', widget: 'string', required: false, hint: 'Use if page strapline differs from site strapline'}
+      - label: 'Page Metadata'
+        name: 'page_metadata'
+        widget: 'object'
+        collapsed: false 
+        fields:
+          - { label: 'HTML title', name: 'html_title', widget: 'string' }
+          - { label: 'HTML description', name: 'html_desc', widget: 'string' }
+      - label: 'Page content'
+        name: 'page_content'
+        widget: 'list'
+        label_singular: 'section'
+        collapsed: false
+        types:
+          - label: 'Text section'
+            summary: '{{fields.section_label}}'
+            name: 'text'
+            widget: 'object'
+            collapsed: true 
+            fields:
+              - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+              - { label: 'Text',name: 'text', widget: 'markdown' }
+              - label: 'Links'
+                name: 'links'
+                widget: 'list'
+                collapsed: true
+                label_singular: 'link'
+                required: false
+                fields:
+                  - { label: 'Title', name: 'title', widget: 'string' }
+                  - { label: 'Url', name: 'url', widget: 'string' }
+                  - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+          - label: 'Text and Image section'
+            summary: '{{fields.section_label}}'
+            name: 'text_and_image'
+            widget: 'object'
+            collapsed: true 
+            fields:
+              - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+              - { label: 'Text',name: 'text', widget: 'markdown' }
+              - label: 'Image'
+                name: 'image'
+                widget: 'object'
+                collapsed: false
+                required: false
+                fields:
+                  - { label: 'Image', name: 'url', widget: 'image', required: false }
+                  - { label: 'Alt', name: 'alt', widget: 'string', required: false }
+                  - { label: 'Width', name: 'width', widget: 'string', required: false }
+                  - { label: 'Height', name: 'height', widget: 'string', required: false }
+              - label: 'Links'
+                name: 'links'
+                widget: 'list'
+                collapsed: true
+                label_singular: 'link'
+                required: false
+                fields:
+                  - { label: 'Title', name: 'title', widget: 'string' }
+                  - { label: 'Url', name: 'url', widget: 'string' }
+                  - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+          - label: 'Text and Video section'
+            summary: '{{fields.section_label}}'
+            name: 'text_and_video'
+            widget: 'object'
+            collapsed: true 
+            fields:
+              - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+              - { label: 'Text',name: 'text', widget: 'markdown' }
+              - label: 'Video'
+                name: 'video'
+                widget: 'object'
+                fields:
+                  - { label: 'Vimeo Id', name: 'vimeo_id', widget: 'string' }
+                  - { label: 'Video title', name: 'video_title', widget: 'string' }
+                  - { label: 'Video transcript', name: 'video_transcript', widget: 'markdown' }
+                  - { label: 'Offline video', name: 'offline_video',  widget: 'file', required: false }
+                  - { label: 'Offline video thumbnail', name: 'offline_video_thumbnail', widget: 'image', required: false }   
+          - label: 'Text and Cards section'
+            summary: '{{fields.section_label}}'
+            name: 'text_and_cards'
+            widget: 'object'
+            collapsed: true 
+            fields:
+              - label: 'Settings'
+                name: 'settings'
+                widget: 'object'
+                summary: 'Section settings'
+                collapsed: true 
+                fields: 
+                  - { label: 'Card header level', name: 'headerLevel', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                  - { label: 'Card header level font size', name: 'headerFontSize', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                  - { label: 'Card alignment', name: 'align', widget: 'select', options: ['left', 'center', 'right'], default: 'left' }
+                  - { label: 'Max cards per row', name: 'maxCardsPerRow', widget: 'select', options: ['1', '2', '3', '4'], default: '3' }
+                  - { label: 'Numbered cards', name: 'numberedCards', widget: 'boolean', required: false, default: false, hint: 'Adds a sequenced numbered overlay on the image' }
+                  - { label: 'Make whole card clickable?', name: 'wholeClickable', widget: 'boolean', required: false, default: false }
+                  - { label: 'Card theme', name: 'cardTheme', widget: 'select', options: ['primary', 'secondary', 'white'], default: 'primary' }
+              - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+              - { label: 'Text', name: 'text', widget: 'markdown' }
+              - label: 'Cards'
+                name: 'cards'
+                widget: 'list'
+                collapsed: true
+                label_singular: 'card'
+                required: true
+                fields:
+                  - { label: 'Title', name: 'title', widget: 'string', required: false }
+                  - { label: 'Summary',name: 'summary', widget: 'markdown' }
+                  - label: 'Image'
+                    name: 'image'
+                    widget: 'object'
+                    collapsed: false
+                    required: true
+                    fields:
+                      - { label: 'Image', name: 'url', widget: 'image', required: false }
+                      - { label: 'Alt', name: 'alt', widget: 'string', required: false }
+                      - { label: 'Width', name: 'width', widget: 'string', required: false }
+                      - { label: 'Height', name: 'height', widget: 'string', required: false }
+                  - label: 'Link'
+                    name: 'link'
+                    widget: 'object'
+                    collapsed: true
+                    label_singular: 'link'
+                    required: false
+                    fields:
+                      - { label: 'Url', name: 'url', widget: 'string' }
+                      - { label: "Is external link", name: "external", widget: "boolean", required: false }
+                      - { label: "Opens in new tab", name: "target", widget: "boolean", required: false }
+  - name: 'steps'
+    label: 'Steps'
+    format: 'json'
+    folder: 'content/steps'
+    create: true
+    fields:
+      - {label: 'File name', name: 'title', widget: 'string'}
+      - {label: 'Strapline', name: 'steps_strapline', widget: 'string', required: false}
+      - label: 'Step'
+        name: 'steps'
+        widget: list
+        summary: '{{fields.step_number}} - {{fields.step_title}}'
+        fields:
+          - { label: 'Step number', name: 'step_number', widget: 'string' }
+          - { label: 'Step strapline', name: 'step_strapline', widget: 'string', required: false, hint: 'Use if step strapline differs from site strapline' }
+          - { label: 'Step title', name: 'step_title', widget: 'string' }
+          - { label: 'Step subtitle', name: 'step_subtitle', widget: 'string', required: false }
+          - label: 'Step Metadata'
+            name: 'step_metadata'
+            widget: 'object'
+            collapsed: false 
+            fields:
+              - { label: 'HTML title', name: 'html_title', widget: 'string' }
+              - { label: 'HTML description', name: 'html_desc', widget: 'string' }
+          - label: 'Step content list'
+            name: 'page_content_list'
+            widget: 'object'
+            required: false
+            collapsed: true
+            fields:
+              - { label: 'Has content list', name: 'has_content_list', widget: 'boolean', required: false }
+              - label: 'Content links'
+                summary: '{{fields.target_title}}'
+                name: 'content_links'
+                widget: 'list'
+                collapsed: true
+                label_singular: 'content link'
+                required: false
+                fields:
+                  - { label: 'Target id', name: 'target_id', widget: 'string', hint: 'Use auto-generated section ids beginning with the format "content-section-INDEX"' }
+                  - { label: 'Target title', name: 'target_title', widget: 'string' }
+          - label: 'Step content'
+            name: 'step_content'
+            widget: 'list'
+            label_singular: 'section'
+            collapsed: true
+            types:
+              - label: 'Text section'
+                summary: '{{fields.section_label}}'
+                name: 'text'
+                widget: 'object'
+                collapsed: true 
+                fields:
+                  - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+                  - { label: 'Text',name: 'text', widget: 'markdown' }
+                  - label: 'Links'
+                    name: 'links'
+                    widget: 'list'
+                    collapsed: true
+                    label_singular: 'link'
+                    required: false
+                    fields:
+                      - { label: 'Title', name: 'title', widget: 'string' }
+                      - { label: 'Url', name: 'url', widget: 'string' }
+                      - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+              - label: 'Text and Image section'
+                summary: '{{fields.section_label}}'
+                name: 'text_and_image'
+                widget: 'object'
+                collapsed: true 
+                fields:
+                  - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+                  - { label: 'Text',name: 'text', widget: 'markdown' }
+                  - label: 'Image'
+                    name: 'image'
+                    widget: 'object'
+                    collapsed: false
+                    required: false
+                    fields:
+                      - { label: 'Image', name: 'url', widget: 'image', required: false }
+                      - { label: 'Alt', name: 'alt', widget: 'string', required: false }
+                      - { label: 'Width', name: 'width', widget: 'string', required: false }
+                      - { label: 'Height', name: 'height', widget: 'string', required: false }
+                  - label: 'Links'
+                    name: 'links'
+                    widget: 'list'
+                    collapsed: true
+                    label_singular: 'link'
+                    required: false
+                    fields:
+                      - { label: 'Title', name: 'title', widget: 'string' }
+                      - { label: 'Url', name: 'url', widget: 'string' }
+                      - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+              - label: 'Text and Cards section'
+                summary: '{{fields.section_label}}'
+                name: 'text_and_cards'
+                widget: 'object'
+                collapsed: true 
+                fields:
+                  - label: 'Settings'
+                    name: 'settings'
+                    widget: 'object'
+                    summary: 'Section settings'
+                    collapsed: true 
+                    fields: 
+                      - { label: 'Card header level', name: 'headerLevel', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                      - { label: 'Card header level font size', name: 'headerFontSize', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                      - { label: 'Card alignment', name: 'align', widget: 'select', options: ['left', 'center', 'right'], default: 'left' }
+                      - { label: 'Max cards per row', name: 'maxCardsPerRow', widget: 'select', options: ['1', '2', '3', '4'], default: '3' }
+                      - { label: 'Numbered cards', name: 'numberedCards', widget: 'boolean', required: false, default: false, hint: 'Adds a sequenced numbered overlay on the image' }
+                      - { label: 'Make whole card clickable?', name: 'wholeClickable', widget: 'boolean', required: false, default: false }
+                      - { label: 'Card theme', name: 'cardTheme', widget: 'select', options: ['primary', 'secondary', 'white'], default: 'primary' }
+                  - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+                  - { label: 'Text', name: 'text', widget: 'markdown' }
+                  - label: 'Cards'
+                    name: 'cards'
+                    widget: 'list'
+                    collapsed: true
+                    label_singular: 'card'
+                    required: true
+                    fields:
+                      - { label: 'Title', name: 'title', widget: 'string', required: false }
+                      - { label: 'Summary',name: 'summary', widget: 'markdown' }
+                      - label: 'Image'
+                        name: 'image'
+                        widget: 'object'
+                        collapsed: false
+                        required: true
+                        fields:
+                          - { label: 'Image', name: 'url', widget: 'image', required: false }
+                          - { label: 'Alt', name: 'alt', widget: 'string', required: false }
+                          - { label: 'Width', name: 'width', widget: 'string', required: false }
+                          - { label: 'Height', name: 'height', widget: 'string', required: false }
+              - label: 'Text and Video section'
+                summary: '{{fields.section_label}}'
+                name: 'text_and_video'
+                widget: 'object'
+                collapsed: true 
+                fields:
+                  - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+                  - { label: 'Text',name: 'text', widget: 'markdown' }
+                  - label: 'Video'
+                    name: 'video'
+                    widget: 'object'
+                    fields:
+                      - { label: 'Vimeo Id', name: 'vimeo_id', widget: 'string' }
+                      - { label: 'Video title', name: 'video_title', widget: 'string' }
+                      - { label: 'Video transcript', name: 'video_transcript', widget: 'markdown' }
+                      - { label: 'Offline video', name: 'offline_video',  widget: 'file', required: false }
+                      - { label: 'Offline video thumbnail', name: 'offline_video_thumbnail', widget: 'image', required: false }                      
+              - label: 'Video Cards section'
+                summary: '{{fields.section_label}}'
+                name: 'video_cards'
+                widget: 'object'
+                collapsed: true 
+                fields:
+                  - label: 'Settings'
+                    name: 'settings'
+                    widget: 'object'
+                    summary: 'Section settings'
+                    collapsed: true 
+                    fields: 
+                      - { label: 'Card header level', name: 'headerLevel', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                      - { label: 'Card header level font size', name: 'headerFontSize', widget: 'select', options: ['1', '2', '3', '4', '5'], default: '3' }
+                      - { label: 'Card alignment', name: 'align', widget: 'select', options: ['left', 'center', 'right'], default: 'left' }
+                      - { label: 'Max cards per row', name: 'maxCardsPerRow', widget: 'select', options: ['1', '2', '3', '4'], default: '3' }
+                      - { label: 'Make whole card clickable?', name: 'wholeClickable', widget: 'boolean', required: false, default: false }
+                      - { label: 'Card theme', name: 'cardTheme', widget: 'select', options: ['primary', 'secondary', 'white'], default: 'primary' }
+                  - { label: 'Section label', name: 'section_label', widget: 'string', hint: 'Required for admin use only' }
+                  - { label: 'Text',name: 'text', widget: 'markdown' }
+                  - label: 'Video Cards'
+                    name: 'cards'
+                    widget: 'list'
+                    collapsed: true
+                    label_singular: 'video card'
+                    required: true
+                    fields:
+                      - { label: 'Title', name: 'title', widget: 'string' }
+                      - { label: 'Summary',name: 'summary', widget: 'markdown' }
+                      - label: 'Image'
+                        name: 'image'
+                        widget: 'object'
+                        collapsed: false
+                        required: true
+                        fields:
+                          - { label: 'Image', name: 'url', widget: 'image', required: false }
+                          - { label: 'Alt', name: 'alt', widget: 'string', required: false }
+                          - { label: 'Width', name: 'width', widget: 'string', required: false }
+                          - { label: 'Height', name: 'height', widget: 'string', required: false }
+                      - label: 'Video'
+                        name: 'video'
+                        widget: 'object'
+                        collapsed: false
+                        required: true
+                        fields:
+                          - { label: 'Vimeo Id', name: 'vimeo_id', widget: 'string' }
+                          - { label: 'Video title', name: 'video_title', widget: 'string' }
+                          - { label: 'Video transcript', name: 'video_transcript', widget: 'markdown' }
+                          - { label: 'Offline video', name: 'offline_video',  widget: 'file', required: false }
+                          - { label: 'Offline video thumbnail', name: 'offline_video_thumbnail', widget: 'image', required: false }

@@ -1,0 +1,77 @@
+{
+  "title": "Example Steps Content",
+  "steps": [
+    {
+      "step_number": "0",
+      "step_title": "Get started",
+      "step_metadata": {
+        "html_title": "Get started",
+        "html_desc": "Get started description"
+      },
+      "step_content": [
+        {
+          "type": "text_and_image",
+          "text": "**This tool will guide you through the Participant Information to help you decide whether to take part in the study.**\n\nWhen you press START below, each step will be presented in full screen mode to remove distractions. If you would prefer your normal view you can change back using the fullscreen button in the header.\n\nFollow the simple step by step process, reading to the bottom of each page before you move on to the next.\n\nWhen you have viewed all of the steps you can return to the main study website or CONSENT to take part in the study.",
+          "image": {
+            "url": "welcome.svg",
+            "alt": "Illustration of carer and child using a computer to research a trial"
+          }
+        }
+      ],
+      "step_strapline": ""
+    },
+    {
+      "step_number": "1",
+      "step_title": "Study Participant Information",
+      "step_metadata": {
+        "html_title": "Study Participant Information",
+        "html_desc": "Study Participant Information"
+      },
+      "step_content": [
+        {
+          "type": "text_and_video",
+          "text_content": "This first section should use very accessible language to introduce the study and provide a general description of the proposed research. It may also include the invitation to take part.\n\nPlease watch our animation about the study.",
+          "video": {
+            "vimeo_id": "500791265",
+            "video_title": "Participant Information Animation",
+            "video_transcript": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet tincidunt mi ac tincidunt. In in orci ante. Curabitur eget accumsan tellus. Fusce ut felis finibus, tempus lorem vitae, gravida augue. Pellentesque aliquam ipsum odio, vel consectetur felis porttitor rhoncus. Curabitur placerat, sem pulvinar lobortis bibendum, dui risus elementum nulla, pharetra commodo odio urna vitae purus. Maecenas iaculis gravida placerat. Cras ac posuere tortor. Aenean ultricies enim enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam tortor dolor, egestas vitae efficitur in, malesuada sed felis. Etiam libero massa, sodales eu pulvinar vitae, bibendum bibendum lectus. Aenean nec faucibus purus, non gravida ligula. Nullam fringilla arcu id sapien luctus bibendum. Nullam erat dolor, sodales ut fringilla ultricies, placerat at lacus.\n\nPhasellus massa nunc, laoreet in dolor a, molestie malesuada erat. Phasellus a diam sit amet urna cursus mollis. Ut a est porttitor, bibendum quam sit amet, placerat mauris. Morbi non velit venenatis orci viverra ultricies. Phasellus in urna non risus consectetur pulvinar. Morbi a nisi a mi varius ullamcorper. Aliquam volutpat elit erat, at ultricies purus iaculis a. Etiam in diam mollis, faucibus neque sit amet, pretium diam.\n\nDuis accumsan sem ipsum, in ultricies elit elementum ac. Phasellus quis felis a dui dictum ullamcorper id sit amet tortor. Praesent viverra et justo vitae dignissim. Nam bibendum, eros sed ultricies vulputate, leo purus egestas purus, ac porttitor sem libero nec purus. Curabitur facilisis vulputate eros, ac auctor dolor posuere vel. Phasellus rhoncus arcu id arcu accumsan, ut maximus metus tempor. Nulla semper nibh elit, vestibulum fermentum erat pulvinar id."
+          },
+          "text": "**This first section should use very accessible language to introduce the study and provide a general description of the proposed research. It may also include the invitation to take part.**\n\nPlease watch our animation about the study."
+        }
+      ]
+    },
+    {
+      "step_number": "100",
+      "step_title": "Next steps",
+      "step_metadata": {
+        "html_title": "Next steps",
+        "html_desc": "Next steps"
+      },
+      "step_content": [
+        {
+          "type": "text_and_image",
+          "text": "**Thank you for taking the time to read this Participant Information.**\n\nIf you are clear that you want to take part in the study please select the SCREENING AND CONSENT button below.\n\nIf you need more information please return to the Study Website.\n\nOr if you have any questions get in touch:\n\nEmail: trialteam@website.com\n\nPhone: 0123456789",
+          "image": {
+            "url": "thank-you.svg",
+            "alt": "Illustration of a doctor and nurse giving the thumbs up"
+          },
+          "links": [
+            {
+              "target": true,
+              "title": "Return to Study website",
+              "url": "http://www.morph.co.uk",
+              "logEvent": "Further Action",
+              "logEventProperty": "Return to Study website"
+            },
+            {
+              "target": false,
+              "title": "Screening and Consent",
+              "url": "http://www.morph.co.uk",
+              "logEvent": "Screening and Consent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
