@@ -44,12 +44,9 @@ export default {
     cookieControlEnabled() {
       return this.$morphCookies
     },
-    themeStylesheetUrl() {
-      return `/css/theme-${this.currentStepsVersion}.css`
-    },
     showPitFooter() {
       // return true
-      return this.isGetStarted || this.isThankyou || this.isStep || this.isInfoPage
+      return this.isGetStarted || this.isThankyou || this.isStep
     },
     showReseDeviceModal(){
       // return false
@@ -60,7 +57,7 @@ export default {
       } else {
         return !!this.isGetStarted
       }
-    }
+    },
   },
   watch: {
     $route(to) {

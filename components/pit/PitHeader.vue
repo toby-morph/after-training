@@ -46,7 +46,7 @@ export default {
       return JSON.parse(this.$config.fullScreen)
     },
     showMainNav() {
-      return !this.isVersionLanding && !this.isLogin
+      return this.$appUser.isLoggedIn()
     },
   },
 }

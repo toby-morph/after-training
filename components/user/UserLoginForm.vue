@@ -138,7 +138,7 @@ export default {
 
         this.form.submitStatus = 'OK'
 
-        this.$router.push({ path: '/getting-started' })
+        this.$router.push({ path: '/get-started' })
 
       } catch (error) {
         this.setFormFeedbackMsg(
