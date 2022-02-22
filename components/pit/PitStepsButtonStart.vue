@@ -95,7 +95,7 @@ export default {
   updated() {
     if (this.scrolledToBottom) {
       this.$nextTick(() => {
-        this.$animations.buttonPulse('.next-step')
+        this.$animations.buttonPulse('.steps-start')
       })
     }
   },
