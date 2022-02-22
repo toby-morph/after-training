@@ -166,7 +166,7 @@ export default {
       const loginDateTime = this.getLoginDateTime()
       try {
         await this.$axios.post(
-          this.$config.wpHeadlessUrl + `/wp-json/wp/v2/users/${userId}`,
+          this.$config.wpHeadlessUrl + `/wp-json/digitrial/v1/user/${userId}/last-login`,
           {
             meta: {
               last_login: loginDateTime,
