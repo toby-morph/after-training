@@ -1,9 +1,7 @@
 export default function ({ app, store, redirect, params, route, from }) {
   // detect <= ie 11
   if (!document.documentMode) {
-    // console.log(store.state.steps.totalActiveSteps)
-    // // make sure totalActiveSteps has been dispatched in vuex first
-    // store.dispatch('steps/setTotalActiveSteps').then(() => {
+
     const lastStepVisited = app.$piTool.lastStepVisited()
     const lastStepVisitedRoute = app.$piTool.lastStepVisitedRoute()
 

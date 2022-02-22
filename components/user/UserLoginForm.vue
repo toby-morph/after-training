@@ -138,8 +138,8 @@ export default {
 
         this.form.submitStatus = 'OK'
 
-        this.$router.push({ path: '/get-started' })
-
+        const lastStepVisited = this.$piTool.lastStepVisitedRoute()
+        this.$router.push({ path: lastStepVisited })
       } catch (error) {
         this.setFormFeedbackMsg(
           this.formFeedbackMsgs.user_not_recognised,
@@ -166,7 +166,8 @@ export default {
       const loginDateTime = this.getLoginDateTime()
       try {
         await this.$axios.post(
-          this.$config.wpHeadlessUrl + `/wp-json/digitrial/v1/user/${userId}/last-login`,
+          this.$config.wpHeadlessUrl +
+            `/wp-json/digitrial/v1/user/${userId}/last-login`,
           {
             meta: {
               last_login: loginDateTime,
