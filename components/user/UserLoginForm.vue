@@ -1,9 +1,9 @@
 <template>
   <div class="flow relative">
-    <AfterComponentLoading :show="form.submitStatus === 'PENDING'" />
-    <AfterFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
+    <UserComponentLoading :show="form.submitStatus === 'PENDING'" />
+    <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
-    </AfterFormFeedback>
+    </UserFormFeedback>
     <form class="flow">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
@@ -138,11 +138,8 @@ export default {
 
         this.form.submitStatus = 'OK'
 
-        if (this.$appUser.isParticipant()) {
-          this.$router.push({ path: '/' })
-        } else {
-          this.$router.push({ path: '/version-landing' })
-        }
+        this.$router.push({ path: '/' })
+
       } catch (error) {
         this.setFormFeedbackMsg(
           this.formFeedbackMsgs.user_not_recognised,

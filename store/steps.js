@@ -60,6 +60,16 @@ export const mutations = {
   SET_TOTAL_ACTIVE_STEPS: (state, totalActiveSteps) => {
     state.totalActiveSteps = totalActiveSteps
   },
+  RESET_STEPS_STORE: (state) => {
+    state.currentStepsVersion = null
+    state.currentStepsStrapline = null
+    state.steps = []
+    state.totalActiveSteps = 0
+    state.currentStep = 0
+    state.completedSteps = []
+    state.startedSteps = false
+    state.stepsVersions = []
+  },
 }
 
 export const actions = {
@@ -104,5 +114,8 @@ export const actions = {
     })
     const totalActiveSteps = activeSteps.length
     commit('SET_TOTAL_ACTIVE_STEPS', totalActiveSteps)
+  },
+  resetStepsStore({ commit }) {
+    commit('RESET_STEPS_STORE')
   },
 }

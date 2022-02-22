@@ -41,19 +41,26 @@ export const formGroup = {
         autoFocus: {
             type: Boolean,
             default: false
+        },
+        autoComplete: {
+            type: String,
+            default: 'on'
         }
     },
     data() {
         return {
             uuid: this.$uuid.v4(),
             validationMsgs: {
-                required: 'This field is required',
-                email: 'Enter a valid email address',
+                required: 'Please complete',
+                email: 'Must be a valid email address',
                 alpha: 'Must contain only letters',
                 minLength: (minLengthAmount) =>
                     `Must be at least ${minLengthAmount} characters long`,
                 maxLength: (maxLengthAmount) =>
                     `Must be no more than ${maxLengthAmount} characters long`,
+                notTempPassword: `Please <a class="underline" href="/reset-pwd-request">reset your password</a> before logging in`,
+                validPassword: `Must contain upper and lower case letters, numbers and special characters (#?!@$%^&*-)`,
+                matchingPswdFields: `The passwords do not match`
             }
         }
     },

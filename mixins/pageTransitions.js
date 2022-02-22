@@ -17,17 +17,28 @@ export const pageTransitions = {
       return fadeIn
     }
 
-    const fadeInRoutes = ['index','privacy','cookies','accessibility','settings']
-    if(fadeInRoutes.includes(to.name) || fadeInRoutes.includes(from.name)){
-      return fadeIn
+    if(to.params.step){
+      if(from.name === 'get-started'){
+        return slideLeft
+      }
+      if(from.name === 'thankyou'){
+        return slideRight
+      }
+    }
+    if(from.params.step){
+      if(to.name === 'get-started'){
+        return slideRight
+      }
+      if(to.name === 'thankyou'){
+        return slideLeft
+      }
     }
 
-    if (to.name === 'get-started') {
-      return slideRight
-    } else if (from.name === 'thankyou') {
-      return slideRight
+    if(to.params.step && from.params.step){
+      return +to.params.step < +from.params.step ? slideRight : slideLeft
     }
-
-    return +to.params.step < +from.params.step ? slideRight : slideLeft
+  
+    return fadeIn
+    
   },
 }

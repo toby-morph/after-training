@@ -78,7 +78,7 @@ export default {
     { src: '~/plugins/nuxt-client-init.js', mode: 'client' },
     { src: '~/plugins/viewport-height.js', mode: 'client' },
     { src: '~/plugins/animations.js', mode: 'client' },
-    {src: '~/plugins/gtag'},
+    { src: '~/plugins/gtag' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

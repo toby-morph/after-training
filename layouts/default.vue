@@ -8,6 +8,7 @@
     <div id="appContent" class="flex flex-col">
       <!-- https://github.com/vue-a11y/vue-skip-to -->
       <LibSkipTo to="main" label="Skip to main content" />
+      <UserPreNav />
       <!-- <PitMultiVersionPreNav v-if="isMultiVersion" /> -->
       <PitHeader class="header" />
       <Nuxt id="main" class="flex-grow" />
