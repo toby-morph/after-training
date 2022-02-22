@@ -10,7 +10,7 @@
             focus:shadow-outline-on-light focus:outline-none
             rounded
           "
-          to="/"
+          to="/get-started"
         >
           <LibBaseImg class="w-full h-full" :src="logo.url" :alt="logo.alt" />
         </nuxt-link>

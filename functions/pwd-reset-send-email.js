@@ -10,10 +10,9 @@ exports.handler = async (event) => {
   }
 
   const data = JSON.parse(event.body)
-
   try {
     await axios.post(
-      WP_HEADLESS_URL + `/wp-json/after-intervention/v1/user/pwd-reset/send-email`,
+      WP_HEADLESS_URL + `/wp-json/digitrial/v1/user/pwd-reset/send-email`,
       {
         'username': data.username,
       },
