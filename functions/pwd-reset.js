@@ -13,7 +13,7 @@ exports.handler = async (event) => {
 
     try {
         await axios.post(
-            WP_HEADLESS_URL + `/wp-json/after-intervention/v1/user/pwd-reset`,
+            WP_HEADLESS_URL + `/wp-json/digitrial/v1/user/pwd-reset`,
             {
                 'username': data.username,
                 'key': data.key,
