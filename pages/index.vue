@@ -178,7 +178,7 @@ export default {
       const route = this.$piTool.lastStepVisited() > 0 ? this.$piTool.lastStepVisitedRoute() : '/get-started'
       // set vuex stepsVersion
       if (!this.isCurrentVersion(version)) {
-        this.resetStepsStore()
+        // this.resetStepsStore()
         this.setCurrentStepsVersion(version)
       }
       this.$router.push(route)

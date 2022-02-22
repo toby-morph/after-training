@@ -21,7 +21,7 @@ export default {
     logOutExistingUser(){
       if(this.$auth){
         this.$auth.logout()
-        this.resetStepsStore()
+        // this.resetStepsStore()
       }
     }    
   }

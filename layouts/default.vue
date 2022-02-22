@@ -132,16 +132,16 @@ export default {
       }
     },
   },
-  head() {
-    return {
-      link: [
-        {
-          rel: 'stylesheet',
-          href: this.themeStylesheetUrl,
-        },
-      ],
-    }
-  },
+  // head() {
+  //   return {
+  //     link: [
+  //       {
+  //         rel: 'stylesheet',
+  //         href: this.themeStylesheetUrl,
+  //       },
+  //     ],
+  //   }
+  // },
 }
 </script>
 
