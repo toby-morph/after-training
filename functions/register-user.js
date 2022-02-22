@@ -13,15 +13,16 @@ exports.handler = async (event) => {
 
   try {
     await axios.post(
-      WP_HEADLESS_URL + '/wp-json/wp/v2/users',
+      WP_HEADLESS_URL + '/wp-json/wp/v2/users/register',
       {
-        username: data.username,
-        email: data.email,
+        email: data.user_email,
         password: data.password,
-        roles: 'participant',
+        roles: 'trainee',
+        first_name: data.first_name,
+        last_name: data.last_name,
         meta: {
-          participant_id: 'BB-BBBB-19999',
-          trial_site: 'Scunthorpe',
+          hospital_trust: data.meta.hospital_trust,
+          clinical_grade_experience: data.meta.clinical_grade_experience,
         },
       },
       {
@@ -36,10 +37,18 @@ exports.handler = async (event) => {
       statusCode: 200,
       body: 'Registration successful',
     }
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: 'Registration failed',
+  } catch (error) {
+    if (error.response) {
+      return {
+        statusCode: error.response.status,
+        body: error.response.data.code,
+      }
+    } else {
+      return {
+        statusCode: 500,
+        body: 'Registration failed',
+      }
     }
+
   }
 }

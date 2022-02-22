@@ -93,6 +93,9 @@ export const formGroup = {
                 if ('email' in this.v && !this.v.email) {
                     formGroupFeedback.push(this.validationMsgs.email)
                 }
+                if ('sameAsPassword' in this.v && !this.v.sameAsPassword) {
+                    formGroupFeedback.push(this.validationMsgs.matchingPswdFields)
+                }
                 return formGroupFeedback
             }
             // otherwise, default to whatever feedback has been sent through the 'feedback' prop

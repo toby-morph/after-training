@@ -1,6 +1,11 @@
 <template>
   <div class="flow relative">
     <UserComponentLoading :show="form.submitStatus === 'PENDING'" />
+    <p>
+      If you are a new user, please <LibBaseLink link-class="underline" link="/register">
+        register to create an account
+      </LibBaseLink>
+    </p>
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
@@ -83,7 +88,7 @@ export default {
             name: 'password',
             label: 'Password',
             feedback: [],
-            instructions: 'Passwords must be at least 8 characters long',
+            instructions: 'Passwords must be at least 8 characters long, contain at least one number, special character (#?!@$%^&*-), uppercase and lowercase letters.',
           },
         },
       },
