@@ -98,12 +98,24 @@ export const actions = {
   setCompletedSteps({ commit }, completedSteps) {
     commit('SET_COMPLETED_STEPS', completedSteps)
   },
-  addCompletedStep({ commit, state }, completedStep) {
-    // const completedSteps = [...state.completedSteps]
+  async addCompletedStep({ commit, state, rootState, app }, completedStep) {
     if (!state.completedSteps.includes(parseInt(completedStep))) {
-      // completedSteps.push(completedStep)
       commit('ADD_COMPLETED_STEP', completedStep)
+
+      // also add completed step to WP db for next login
+      try {
+        const userId = this.app.$auth.user.id
+        const completedStepStr = completedStep.toString()
+        await this.$axios.post(
+          this.$config.wpHeadlessUrl + `/wp-json/digitrial/v1/user/${userId}/last-step/${completedStepStr}`
+        )
+        // console.log(response)
+      } catch (error) {
+        // console.error(error)
+      }
+
     }
+    
   },
   emptyCompletedSteps({ commit }) {
     commit('EMPTY_COMPLETED_STEPS')

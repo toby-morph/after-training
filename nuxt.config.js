@@ -62,14 +62,14 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/utils.js', mode: 'client' },
-    { src: '@/plugins/vue-fullscreen.js', mode: 'client' },
+    // { src: '@/plugins/vue-fullscreen.js', mode: 'client' },
     { src: '~/plugins/vue-announcer.js', mode: 'client' },
     { src: '@/plugins/vue-uuid.js', mode: 'client' },
     { src: '@/plugins/vue-vimeo-player.js', mode: 'client' },
-    { src: '~/plugins/persistedState.client.js', mode: 'client' },
+    // { src: '~/plugins/persistedState.client.js', mode: 'client' },
     { src: '@/plugins/morph-cookies.js', mode: 'client' },
-    { src: '~/plugins/vue-axe.js', mode: 'client' },
-    { src: '@/plugins/swRegistration', mode: 'client' },
+    // { src: '~/plugins/vue-axe.js', mode: 'client' },
+    // { src: '@/plugins/swRegistration', mode: 'client' },
     { src: '@/plugins/pi-tool.js', mode: 'client' },
     // { src: '@/plugins/vue-skip-to.js', mode: 'client' },
     { src: '@/plugins/vuelidate.js', mode: 'client' },

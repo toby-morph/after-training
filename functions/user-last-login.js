@@ -31,9 +31,6 @@ exports.handler = async (event) => {
         'meta[last_login]': loginDate,
       },
       {
-        // params: {
-        //   'meta[last_login]': loginDate
-        // },
         auth: {
           username: APP_ADMIN_USER,
           password: APP_ADMIN_PSWD,

@@ -20,7 +20,7 @@ export const currentPage = {
       const isInfoPage = infoPageRoutes.find(
         (route) => route === this.$route.path
       )
-      return isInfoPage
+      return !!isInfoPage
     },
   },
 }

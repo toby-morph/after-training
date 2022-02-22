@@ -173,9 +173,7 @@ export default {
             },
           }
         )
-        // console.log(response)
       } catch (error) {
-        // console.error(error)
         this.$nuxt.error({
           statusCode: 400,
           message: 'Failed to save log in time',
