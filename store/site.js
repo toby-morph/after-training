@@ -39,6 +39,7 @@ export const state = () => ({
   preCacheSize: sitePreCacheDetails.size,
   preCacheTotalCount: sitePreCacheDetails.count,
   preCacheCurrentCount: null,
+  trialSites: []
 })
 
 export const getters = {
@@ -111,6 +112,9 @@ export const mutations = {
   SET_PRECACHE_CURRENT_COUNT: (state, preCacheCurrentCount) => {
     state.preCacheCurrentCount = preCacheCurrentCount
   },
+  SET_TRIAL_SITES: (state, trialSites) => {
+    state.trialSites = trialSites
+  },
 }
 
 export const actions = {
@@ -167,5 +171,17 @@ export const actions = {
   },
   setPreCacheCurrentCount({ commit }, preCacheCurrentCount) {
     commit('SET_PRECACHE_CURRENT_COUNT', preCacheCurrentCount)
+  },
+  async setTrialSites({ commit, state }) {
+    try {
+      const trialSites = await this.$axios.get(
+        this.$config.siteUrl + '/.netlify/functions/get-trial-sites'
+      )
+      // console.log(trialSites)
+      commit('SET_TRIAL_SITES', trialSites.data)
+      // console.log(response)
+    } catch (err) {
+      // console.log(err)
+    }
   },
 }

@@ -4,28 +4,40 @@
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <p>
-      Please complete all fields.
-    </p>
+    <p>Please complete all fields.</p>
     <form class="flow">
-      </p><div v-for="(field, name, index) in form.fields" :key="index">
-            <LibFormGroupInput
-              v-if="field.el === 'input'"
-              v-model.trim="$v.formData[field.name].$model"
-              :field-name="field.name"
-              :field-el="field.name"
-              :input-type="field.inputType"
-              :label="field.label"
-              :instructions="field.instructions"
-              :disabled="field.disabled"
-              :placeholder="field.placeholder"
-              :required="field.required"
-              :feedback="field.feedback"
-              :auto-focus="index === 0"
-              :field-wrapper-classes="field.wrapperClasses"
-              :v="$v.formData[field.name]"
-            />
-          </div>
+      <div v-for="(field, name, index) in form.fields" :key="index">
+        <LibFormGroupInput
+          v-if="field.el === 'input'"
+          v-model.trim="$v.formData[field.name].$model"
+          :field-name="field.name"
+          :field-el="field.name"
+          :input-type="field.inputType"
+          :label="field.label"
+          :instructions="field.instructions"
+          :disabled="field.disabled"
+          :placeholder="field.placeholder"
+          :required="field.required"
+          :feedback="field.feedback"
+          :auto-focus="index === 0"
+          :field-wrapper-classes="field.wrapperClasses"
+          :v="$v.formData[field.name]"
+        />
+        <!-- Form select group -->
+        <LibFormGroupSelect
+          v-if="field.el === 'select'"
+          v-model="$v.formData[field.name].$model"
+          :field-name="field.name"
+          :label="field.label"
+          :disabled="field.disabled"
+          :instructions="field.instructions"
+          :required="field.required"
+          :feedback="field.feedback"
+          :options="field.options"
+          :auto-focus="index === 0"
+          :v="$v.formData[field.name]"
+        />
+      </div>
       <LibBaseButton
         btn-class="btn-dark"
         :disabled="$v.$invalid"
@@ -52,7 +64,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+
 export default {
   data() {
     return {
@@ -60,6 +75,7 @@ export default {
         userEmail: null,
         firstName: null,
         lastName: null,
+        trustHospital: null,
         password: null,
         repeatPassword: null,
       },
@@ -70,7 +86,7 @@ export default {
       formFeedbackMsgs: {
         registration_failed: `We have been unable to register you. Please try again or email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a> if the problem persists.`,
         registration_succeeded: `Your are registered on AFTER training and can now <a class="underline" href="/login">log in</a>`,
-        email_already_taken: `The email you have entered is already registered. Please use a different email address or <a class="underline" href="/reset-pwd-request">change your password</a> if you have forgotten it.`
+        email_already_taken: `The email you have entered is already registered. Please use a different email address or <a class="underline" href="/reset-pwd-request">change your password</a> if you have forgotten it.`,
       },
       form: {
         submitStatus: null,
@@ -99,6 +115,14 @@ export default {
             feedback: [],
             instructions: null,
           },
+          trustHospital: {
+            el: 'select',
+            name: 'trustHospital',
+            label: 'Trust/hospital name',
+            options: [],
+            feedback: [],
+            instructions: null,
+          },
           password: {
             el: 'input',
             inputType: 'password',
@@ -120,6 +144,21 @@ export default {
       },
     }
   },
+  computed: {
+    ...mapState({
+      trialSites: (state) => state.site.trialSites,
+    }),
+    trustHospitalOptions(){
+      const trustHospitalOptions = this.trialSites.map(trialSite => ({
+        value: trialSite.trial_site_code,
+        label: trialSite.trial_site,
+      }))
+      return trustHospitalOptions
+    }
+  },
+  mounted(){
+    this.form.fields.trustHospital.options = this.trustHospitalOptions
+  },
   methods: {
     submit() {
       if (this.$v.$invalid) {
@@ -140,8 +179,8 @@ export default {
             first_name: this.formData.firstName,
             last_name: this.formData.lastName,
             meta: {
-              hospital_trust: 'Milnthorpe',
-              clinical_grade_experience: 'FY3',
+              hospital_trust: this.formData.trustHospital,
+              // clinical_grade_experience: 'FY3',
             },
           }
         )
@@ -158,16 +197,6 @@ export default {
             this.formFeedbackMsgs.email_already_taken,
             'warning'
           )
-        // } else if(error.response.data === 'password reset key invalid') {
-        //   this.formFeedbackMsg = this.setFormFeedbackMsg(
-        //     this.formFeedbackMsgs.password_reset_key_invalid,
-        //     'warning'
-        //   )
-        // } else if(error.response.data === 'password format is invalid') {
-        //   this.formFeedbackMsg = this.setFormFeedbackMsg(
-        //     this.formFeedbackMsgs.password_format_invalid,
-        //     'warning'
-        //   )
         } else {
           this.formFeedbackMsg = this.setFormFeedbackMsg(
             this.formFeedbackMsgs.registration_failed,
@@ -191,6 +220,9 @@ export default {
         required,
       },
       lastName: {
+        required,
+      },
+      trustHospital: {
         required,
       },
       password: {

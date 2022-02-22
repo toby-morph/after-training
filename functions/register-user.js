@@ -22,7 +22,7 @@ exports.handler = async (event) => {
         last_name: data.last_name,
         meta: {
           hospital_trust: data.meta.hospital_trust,
-          clinical_grade_experience: data.meta.clinical_grade_experience,
+          // clinical_grade_experience: data.meta.clinical_grade_experience,
         },
       },
       {

@@ -115,7 +115,6 @@ export const actions = {
       }
 
     }
-    
   },
   emptyCompletedSteps({ commit }) {
     commit('EMPTY_COMPLETED_STEPS')
