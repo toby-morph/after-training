@@ -7,7 +7,7 @@
     >
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <form class="flow">
+    <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
           v-if="field.el === 'input'"
@@ -28,6 +28,7 @@
       </div>
       <LibBaseButton
         btn-class="btn-dark"
+        class="ml-auto"
         :disabled="$v.$invalid || !validQueryParams"
         @click.prevent="submit"
       >
@@ -35,25 +36,24 @@
           Reset password
         </template>
       </LibBaseButton>
-      <div class="flow text-right">
-        <LibBaseLink
-          class="block"
-          :is-nuxt-link="true"
-          :link="loginLink"
-          link-class="underline"
-        >
-          Log in
-        </LibBaseLink>
-        <LibBaseLink
-          class="block"
-          :is-nuxt-link="true"
-          link="/reset-pwd-request"
-          link-class="underline"
-        >
-          Send me a new password reset email
-        </LibBaseLink>
-      </div>
     </form>
+    <div class="flex flex-wrap gap-4 pt-6">
+      <LibBaseLink
+        :is-nuxt-link="true"
+        :link="loginLink"
+        link-class="underline"
+      >
+        Log in
+      </LibBaseLink>
+      <LibBaseLink
+        class="ml-auto"
+        :is-nuxt-link="true"
+        link="/reset-pwd-request"
+        link-class="underline"
+      >
+        Send password reset email
+      </LibBaseLink>
+    </div>
   </div>
 </template>
 

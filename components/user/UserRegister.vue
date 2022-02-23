@@ -5,7 +5,7 @@
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
     <p>Please complete all fields.</p>
-    <form class="flow">
+    <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
           v-if="field.el === 'input'"
@@ -39,6 +39,7 @@
         />
       </div>
       <LibBaseButton
+        class="ml-auto"
         btn-class="btn-dark"
         :disabled="$v.$invalid"
         @click.prevent="submit"
@@ -47,19 +48,19 @@
           Register
         </template>
       </LibBaseButton>
-      <div class="flex">
-        <LibBaseLink class="ml-auto" link="/login" link-class="underline">
-          Log-in
-        </LibBaseLink>
-        <LibBaseLink
-          class="ml-auto"
-          link="/reset-pwd-request"
-          link-class="underline"
-        >
-          Forgotten password?
-        </LibBaseLink>
-      </div>
     </form>
+    <div class="flex flex-wrap gap-4 pt-6">
+      <LibBaseLink link="/login" link-class="underline">
+        Log-in
+      </LibBaseLink>
+      <LibBaseLink
+        class="ml-auto"
+        link="/reset-pwd-request"
+        link-class="underline"
+      >
+        Forgotten password?
+      </LibBaseLink>
+    </div>
   </div>
 </template>
 

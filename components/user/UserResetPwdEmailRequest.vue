@@ -7,7 +7,7 @@
     >
       {{ resetPwdFeedback.msg }}
     </UserFormFeedback>
-    <form class="flow">
+    <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
           v-if="field.el === 'input'"
@@ -27,25 +27,26 @@
         />
       </div>
       <LibBaseButton
+        class="ml-auto"
         btn-class="btn-dark"
         :disabled="$v.$invalid"
         @click.prevent="submit"
       >
         <template #text>
-          Get new password
+          Request new password
         </template>
       </LibBaseButton>
-      <div class="flex">
-        <LibBaseLink
-          class="ml-auto"
-          :is-nuxt-link="true"
-          link="/login"
-          link-class="underline"
-        >
-          Log in
-        </LibBaseLink>
-      </div>
     </form>
+    <div class="flex flex-wrap gap-4 pt-6">
+      <LibBaseLink
+        class="ml-auto"
+        :is-nuxt-link="true"
+        link="/login"
+        link-class="underline"
+      >
+        Log in
+      </LibBaseLink>
+    </div>
   </div>
 </template>
 

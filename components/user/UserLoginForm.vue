@@ -1,15 +1,10 @@
 <template>
   <div class="flow relative">
     <UserComponentLoading :show="form.submitStatus === 'PENDING'" />
-    <p>
-      If you are a new user, please <LibBaseLink link-class="underline" link="/register">
-        register to create an account
-      </LibBaseLink>
-    </p>
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <form class="flow">
+    <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
           v-if="field.el === 'input'"
@@ -29,6 +24,7 @@
         />
       </div>
       <LibBaseButton
+        class="ml-auto"
         btn-class="btn-dark"
         :disabled="$v.$invalid"
         @click.prevent="submit"
@@ -37,16 +33,19 @@
           Log In
         </template>
       </LibBaseButton>
-      <div class="flex">
-        <LibBaseLink
-          class="ml-auto"
-          link="/reset-pwd-request"
-          link-class="underline"
-        >
-          Forgotten password?
-        </LibBaseLink>
-      </div>
     </form>
+    <div class="flex flex-wrap gap-4 pt-6">
+      <LibBaseLink link="/register" link-class="underline">
+        Register
+      </LibBaseLink>
+      <LibBaseLink
+        class="ml-auto"
+        link="/reset-pwd-request"
+        link-class="underline"
+      >
+        Forgotten password?
+      </LibBaseLink>
+    </div>
   </div>
 </template>
 
@@ -68,6 +67,7 @@ export default {
         status: null,
       },
       formFeedbackMsgs: {
+        new_user_register: `If you are a new user, please <a class="underline" href="/register">register</a> to create an account`,
         user_not_recognised: `Your username and password have not been recognised. Please try again or <a class="underline" href="/reset-pwd-request">reset your password</a>.`,
       },
       form: {
@@ -88,7 +88,8 @@ export default {
             name: 'password',
             label: 'Password',
             feedback: [],
-            instructions: 'Passwords must be at least 8 characters long, contain at least one number, special character (#?!@$%^&*-), uppercase and lowercase letters.',
+            instructions:
+              'Passwords must be at least 8 characters long, contain at least one number, special character (#?!@$%^&*-), uppercase and lowercase letters.',
           },
         },
       },
@@ -105,6 +106,11 @@ export default {
   mounted() {
     if (this.userNameFromUrl) {
       this.formData.userName = this.userNameFromUrl
+    } else {
+      this.setFormFeedbackMsg(
+        this.formFeedbackMsgs.new_user_register,
+        'success'
+      )
     }
   },
   methods: {
