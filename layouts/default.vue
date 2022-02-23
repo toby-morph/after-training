@@ -1,7 +1,7 @@
 <template>
   <div
     id="appLayout"
-    class="bg-grey-light relative"
+    class="relative"
     :class="showPitFooter ? 'has-footer' : ''"
     tabindex="-1"
   >

@@ -1,5 +1,5 @@
 body {
-  @apply m-0 text-xs-base leading-xs-base text-color-body font-weight-body;
+  @apply m-0 text-xs-base leading-xs-base bg-grey-light text-color-body font-weight-body;
   @screen md {
     @apply text-base leading-base;
   }
