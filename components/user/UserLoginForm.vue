@@ -34,7 +34,7 @@
         </template>
       </LibBaseButton>
     </form>
-    <div class="flex flex-wrap gap-4 pt-6">
+    <UserFormFooter>
       <LibBaseLink link="/register" link-class="underline">
         Register
       </LibBaseLink>
@@ -45,7 +45,7 @@
       >
         Forgotten password?
       </LibBaseLink>
-    </div>
+    </UserFormFooter>
   </div>
 </template>
 
@@ -67,7 +67,9 @@ export default {
         status: null,
       },
       formFeedbackMsgs: {
+        user_new_pwd: `You password has been updated. If you have any problems logging in please email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
         new_user_register: `If you are a new user, please <a class="underline" href="/register">register</a> to create an account`,
+        new_registered_trainee: `Thank you for registering, you can now log in. If you have any problems contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
         user_not_recognised: `Your username and password have not been recognised. Please try again or <a class="underline" href="/reset-pwd-request">reset your password</a>.`,
       },
       form: {
@@ -100,17 +102,45 @@ export default {
       return this.$route.query.login ? this.$route.query.login : null
     },
     fromPasswordReset() {
-      return this.$route.from && this.$route.from.name === 'reset-pwd'
+      return (
+        this.$route.query.action && this.$route.query.action === 'reset-pwd'
+      )
+    },
+    newTrainee() {
+      return (
+        this.$route.query.action && this.$route.query.action === 'new-trainee'
+      )
+    },
+    userStatus() {
+      // default, new-trainee, new-pwd
+      let userStatus = 'default'
+      if (this.newTrainee) {
+        userStatus = 'new-trainee'
+      } else if (this.fromPasswordReset) {
+        userStatus = 'new-pwd'
+      }
+      return userStatus
     },
   },
   mounted() {
     if (this.userNameFromUrl) {
       this.formData.userName = this.userNameFromUrl
-    } else {
-      this.setFormFeedbackMsg(
-        this.formFeedbackMsgs.new_user_register,
-        'success'
-      )
+    }
+    switch (this.userStatus) {
+      case 'new-trainee':
+        this.setFormFeedbackMsg(
+          this.formFeedbackMsgs.new_registered_trainee,
+          'success'
+        )
+        break
+      case 'new-pwd':
+        this.setFormFeedbackMsg(this.formFeedbackMsgs.user_new_pwd, 'success')
+        break
+      default:
+        this.setFormFeedbackMsg(
+          this.formFeedbackMsgs.new_user_register,
+          'success'
+        )
     }
   },
   methods: {

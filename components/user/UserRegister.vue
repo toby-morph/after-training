@@ -49,7 +49,7 @@
         </template>
       </LibBaseButton>
     </form>
-    <div class="flex flex-wrap gap-4 pt-6">
+    <UserFormFooter>
       <LibBaseLink link="/login" link-class="underline">
         Log-in
       </LibBaseLink>
@@ -60,7 +60,7 @@
       >
         Forgotten password?
       </LibBaseLink>
-    </div>
+    </UserFormFooter>
   </div>
 </template>
 
@@ -186,10 +186,10 @@ export default {
           }
         )
         this.form.submitStatus = 'OK'
-        this.formFeedbackMsg = this.setFormFeedbackMsg(
-          this.formFeedbackMsgs.registration_succeeded,
-          'success'
-        )
+        
+        const lastStepVisited = this.$piTool.lastStepVisitedRoute()
+        this.$router.push({ path: `${lastStepVisited}?action=new-trainee&login=${this.formData.userEmail}` })
+
       } catch (error) {
         this.form.submitStatus = 'ERROR'
 

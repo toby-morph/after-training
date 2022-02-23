@@ -5,7 +5,7 @@
       v-show="resetPwdFeedback.msg"
       :status="resetPwdFeedback.status"
     >
-      {{ resetPwdFeedback.msg }}
+      <p v-html="resetPwdFeedback.msg" />
     </UserFormFeedback>
     <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
@@ -37,7 +37,7 @@
         </template>
       </LibBaseButton>
     </form>
-    <div class="flex flex-wrap gap-4 pt-6">
+    <UserFormFooter>
       <LibBaseLink
         class="ml-auto"
         :is-nuxt-link="true"
@@ -46,7 +46,7 @@
       >
         Log in
       </LibBaseLink>
-    </div>
+    </UserFormFooter>
   </div>
 </template>
 
@@ -61,11 +61,11 @@ export default {
         status: null,
       },
       resetPwdFeedbackMsgs: {
-        username_does_not_exist:
-          `The username you have entered has not been recognised. Please try again or contact ${this.$config.siteAdminEmail}`,
-        success: 'You have been sent an email containing instructions on how to reset your password.',
-        error:
-          `There has been a problem with sending your password reset email. Please try again or contact ${this.$config.siteAdminEmail}`,
+        instructions: `Please enter the email you registered with. You will receive an email with instructions on resetting your password.`,
+        username_does_not_exist: `The username you have entered has not been recognised. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
+        success:
+          'You have been sent an email containing instructions on resetting your password.',
+        error: `There has been a problem with sending your password reset email. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
       },
       formData: {
         userName: null,
@@ -85,6 +85,12 @@ export default {
         },
       },
     }
+  },
+  mounted() {
+    this.formFeedbackMsg = this.setResetPwdFeedbackMsg(
+      this.resetPwdFeedbackMsgs.instructions,
+      'success'
+    )
   },
   methods: {
     submit() {

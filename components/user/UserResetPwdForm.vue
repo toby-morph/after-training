@@ -37,7 +37,7 @@
         </template>
       </LibBaseButton>
     </form>
-    <div class="flex flex-wrap gap-4 pt-6">
+    <UserFormFooter>
       <LibBaseLink
         :is-nuxt-link="true"
         :link="loginLink"
@@ -53,7 +53,7 @@
       >
         Send password reset email
       </LibBaseLink>
-    </div>
+    </UserFormFooter>
   </div>
 </template>
 
@@ -107,7 +107,10 @@ export default {
       return this.userName && this.passwordResetKey
     },
     loginLink(){
-      return this.userName ? `/login?login=${this.userName}` : '/login'
+      const lastStepVisited = this.$piTool.lastStepVisitedRoute()
+      let loginLink = `${lastStepVisited}?action=reset-pwd`
+      loginLink = this.userName ? `${loginLink}&login=${this.userName}` : loginLink
+      return loginLink
     }
   },
   mounted() {
@@ -135,10 +138,8 @@ export default {
           }
         )
         this.form.submitStatus = 'OK'
-        this.formFeedbackMsg = this.setFormFeedbackMsg(
-          this.formFeedbackMsgs.success,
-          'success'
-        )
+        this.$router.push(this.loginLink)
+
       } catch (error) {
         this.form.submitStatus = 'ERROR'
         if (error.response.data === 'username does not exist') {
