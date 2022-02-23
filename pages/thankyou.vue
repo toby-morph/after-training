@@ -16,6 +16,13 @@
       :section="section"
       theme="mid"
     />
+    <LibContentSectionWrapper>
+      <LibBaseButton @click="sendUserCertificate">
+        <template #text>
+          Send user certificate
+        </template>
+      </LibBaseButton>
+    </LibContentSectionWrapper>
     <span id="endOfContent" />
   </main>
 </template>
@@ -44,6 +51,21 @@ export default {
   },
   created() {
     this.step = this.getStepByNumber(this.currentStep)
+  },
+  methods: {
+    async sendUserCertificate() {
+      try {
+        const response = await this.$axios.post(
+          this.$config.siteUrl + '/.netlify/functions/send-certificate',
+          {
+            userId: this.$auth.user.id,
+          }
+        )
+        console.log(response)
+      } catch (err) {
+        console.log(err)
+      }
+    },
   },
   head() {
     return {
