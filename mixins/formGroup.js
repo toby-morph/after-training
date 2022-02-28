@@ -45,7 +45,11 @@ export const formGroup = {
         autoComplete: {
             type: String,
             default: 'on'
-        }
+        },
+        hidden: {
+            type: Boolean,
+            default: false
+        }, 
     },
     data() {
         return {
@@ -60,7 +64,7 @@ export const formGroup = {
                     `Must be no more than ${maxLengthAmount} characters long`,
                 notTempPassword: `Please <a class="underline" href="/reset-pwd-request">reset your password</a> before logging in`,
                 validPassword: `Must contain upper and lower case letters, numbers and special characters (#?!@$%^&*-)`,
-                matchingPswdFields: `The passwords do not match`
+                matchingPswdFields: `The passwords do not match`,
             }
         }
     },
