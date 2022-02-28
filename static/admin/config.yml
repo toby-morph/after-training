@@ -1,13 +1,13 @@
 # https://community.netlify.com/t/how-to-login-local-cms/14007/14
 
-backend:
- name: bitbucket
- repo: morphuk/after-training
- branch: master
- auth_type: implicit
- app_id: MNySzhpp7ySjJbwubL
+# backend:
+#  name: bitbucket
+#  repo: morphuk/after-training
+#  branch: master
+#  auth_type: implicit
+#  app_id: MNySzhpp7ySjJbwubL
 
-site_url: https://after-training.netlify.app
+# site_url: https://after-training.netlify.app
 
 #=== STAGING ===#
 # backend:
@@ -29,10 +29,10 @@ site_url: https://after-training.netlify.app
 # site_url: https://pi-multi-version.netlify.app
 
 
-# backend:
-#   name: git-gateway
-#   branch: master
-# local_backend: true
+backend:
+  name: git-gateway
+  branch: survey
+local_backend: true
 
 media_folder: assets/img
 public_folder: ''
@@ -120,6 +120,7 @@ collections:
                   - { label: 'Title', name: 'title', widget: 'string' }
                   - { label: 'Url', name: 'url', widget: 'string' }
                   - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+                  - { label: "Is external link", name: "is_external_link", widget: "boolean", default: false}
           - label: 'Text and Image section'
             summary: '{{fields.section_label}}'
             name: 'text_and_image'
@@ -148,6 +149,7 @@ collections:
                   - { label: 'Title', name: 'title', widget: 'string' }
                   - { label: 'Url', name: 'url', widget: 'string' }
                   - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+                  - { label: "Is external link", name: "is_external_link", widget: "boolean", default: false}
           - label: 'Text and Video section'
             summary: '{{fields.section_label}}'
             name: 'text_and_video'
@@ -280,6 +282,7 @@ collections:
                       - { label: 'Title', name: 'title', widget: 'string' }
                       - { label: 'Url', name: 'url', widget: 'string' }
                       - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+                      - { label: "Is external link", name: "is_external_link", widget: "boolean", default: false}
               - label: 'Text and Image section'
                 summary: '{{fields.section_label}}'
                 name: 'text_and_image'
@@ -308,6 +311,7 @@ collections:
                       - { label: 'Title', name: 'title', widget: 'string' }
                       - { label: 'Url', name: 'url', widget: 'string' }
                       - { label: "Opens in new tab", name: "target", widget: "boolean", default: false}
+                      - { label: "Is external link", name: "is_external_link", widget: "boolean", default: false}
               - label: 'Text and Cards section'
                 summary: '{{fields.section_label}}'
                 name: 'text_and_cards'

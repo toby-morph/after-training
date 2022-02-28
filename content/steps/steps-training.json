@@ -58,17 +58,13 @@
           },
           "links": [
             {
-              "target": true,
-              "title": "Return to Study website",
-              "url": "http://www.morph.co.uk",
-              "logEvent": "Further Action",
-              "logEventProperty": "Return to Study website"
-            },
-            {
               "target": false,
-              "title": "Screening and Consent",
-              "url": "http://www.morph.co.uk",
-              "logEvent": "Screening and Consent"
+              "title": "Complete survey to recieve certificate",
+              "url": "/survey/training-log",
+              "logEvent": "Complete training log",
+              "logEventProperty": "Complete training log",
+              "isExternalLink": false,
+              "is_external_link": false
             }
           ],
           "section_label": "Thank you for taking the time to read this Participant Information"
