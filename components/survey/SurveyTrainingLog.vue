@@ -4,7 +4,10 @@
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <p>Please complete all fields.</p>
+    <p>
+      Please complete all fields. After this form has been submitted, we will
+      email you a copy of your training certificate in PDF format.
+    </p>
     <form class="flow flex flex-col">
       <div v-for="(field, name, index) in form.fields" :key="index">
         <LibFormGroupInput
@@ -74,7 +77,7 @@
         @click.prevent="submit"
       >
         <template #text>
-          Submit survey
+          Submit
         </template>
       </LibBaseButton>
     </form>
@@ -101,7 +104,9 @@ export default {
         msg: null,
         status: null,
       },
-      formFeedbackMsgs: {},
+      formFeedbackMsgs: {
+        submission_failed: `Sorry, we have been unable to process this form. Please try again or email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a> if the problem persists.`,
+      },
       form: {
         submitStatus: null,
         fields: {
@@ -232,8 +237,15 @@ export default {
           }
         )
         this.form.submitStatus = 'OK'
+
+        this.$router.push({ path: `/survey/training-feedback?action=certificate_sent` })
       } catch (error) {
         this.form.submitStatus = 'ERROR'
+
+        this.formFeedbackMsg = this.setFormFeedbackMsg(
+          this.formFeedbackMsgs.submission_failed,
+          'warning'
+        )
       }
     },
     setFormFeedbackMsg(msg = null, status = null) {
