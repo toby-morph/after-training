@@ -52,6 +52,20 @@
           :auto-focus="index === 0"
           :v="$v.formData[field.name]"
         />
+        <!-- Form radio group -->
+        <LibFormGroupRadioButton
+          v-if="field.el === 'radio'"
+          v-model="$v.formData[field.name].$model"
+          :field-name="field.name"
+          :label="field.label"
+          :disabled="field.disabled"
+          :instructions="field.instructions"
+          :required="field.required"
+          :feedback="field.feedback"
+          :options="field.options"
+          :auto-focus="index === 0"
+          :v="$v.formData[field.name]"
+        />
       </div>
       <LibBaseButton
         class="ml-auto"
@@ -60,29 +74,20 @@
         @click.prevent="submit"
       >
         <template #text>
-          Register
+          Submit survey
         </template>
       </LibBaseButton>
     </form>
-    <UserFormFooter>
-      <LibBaseLink link="/login" link-class="underline">
-        Log-in
-      </LibBaseLink>
-      <LibBaseLink
-        class="ml-auto"
-        link="/reset-pwd-request"
-        link-class="underline"
-      >
-        Forgotten password?
-      </LibBaseLink>
-    </UserFormFooter>
   </div>
 </template>
 
 <script>
 import { required, requiredIf } from 'vuelidate/lib/validators'
 
+import { dates } from '@/mixins/dates.js'
+
 export default {
+  mixins: [dates],
   data() {
     return {
       formData: {
@@ -90,6 +95,7 @@ export default {
         yearOfQualification: null,
         currentNhsGrade: null,
         currentNhsGradeOther: null,
+        howManyPatients: null,
       },
       formFeedback: {
         msg: null,
@@ -162,20 +168,44 @@ export default {
             instructions: null,
             hidden: () => {
               return this.formData.currentNhsGrade !== 'Other'
-            }
+            },
+          },
+          howManyPatients: {
+            el: 'radio',
+            name: 'howManyPatients',
+            label:
+              'How many ankle fracture patients do you see during a usual week on average?',
+            options: [
+              {
+                value: 'none',
+                label: 'None',
+              },
+              {
+                value: '1+',
+                label: 'At least 1',
+              },
+              {
+                value: '2-4',
+                label: '2-4',
+              },
+              {
+                value: '5+',
+                label: '5 or more',
+              },
+            ],
+            feedback: [],
+            instructions: null,
           },
         },
       },
     }
   },
-  mounted() {
-    // this.prefillFields()
+  computed: {
+    traineeId() {
+      return this.$auth.user.id
+    },
   },
   methods: {
-    // prefillFields(){
-    //   this.formData.userName = this.$auth.user.name
-    //   this.formData.userEmail = this.$auth.user.meta.email
-    // },
     submit() {
       if (this.$v.$invalid) {
         this.$v.$touch()
@@ -184,7 +214,28 @@ export default {
         this.submitTrainingLog()
       }
     },
-    async submitTrainingLog() {},
+    async submitTrainingLog() {
+      try {
+        await this.$axios.post(
+          this.$config.wpHeadlessUrl +
+            `/wp-json/digitrial/v1/user/${this.traineeId}/survey/update`,
+          {
+            section_one: {
+              confirm_completion: true,
+              how_did_training_take_place: 'online',
+              year_of_qualification: this.formData.yearOfQualification,
+              current_nhs_grade: this.formData.currentNhsGrade,
+              current_nhs_grade_other: this.formData.currentNhsGradeOther,
+              ankle_fracture_patients_per_week: this.formData.howManyPatients,
+              date_of_completion: this.currentDate,
+            },
+          }
+        )
+        this.form.submitStatus = 'OK'
+      } catch (error) {
+        this.form.submitStatus = 'ERROR'
+      }
+    },
     setFormFeedbackMsg(msg = null, status = null) {
       this.formFeedback.msg = msg
       this.formFeedback.status = status
@@ -204,7 +255,10 @@ export default {
       currentNhsGradeOther: {
         required: requiredIf((formData) => {
           return formData.currentNhsGrade === 'Other'
-        })
+        }),
+      },
+      howManyPatients: {
+        required,
       },
     },
   },
