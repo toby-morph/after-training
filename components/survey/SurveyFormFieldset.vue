@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-grey-light p-4 rounded-lg">
+  <div class="pt-4 border-t border-grey-mid-light">
     <fieldset class="flow block">
-      <legend>
+      <legend class="font-bold">
         <slot name="legend">
           Legend
         </slot>
