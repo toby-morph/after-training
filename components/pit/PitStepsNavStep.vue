@@ -130,8 +130,8 @@ export default {
     &:after {
       transform: scale(1);
       transform-origin: center;
-      width: calc(100% + 2px);
-      height: calc(100% + 2px);
+      width: calc(100% + 3px);
+      height: calc(100% + 3px);
     }
   }
   &.steps-nav-icon-primary:hover {
@@ -154,8 +154,8 @@ export default {
   &:after {
     transform: scale(1);
     transform-origin: center;
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
   }
   &.hovered {
     @apply text-white;

@@ -16,13 +16,6 @@
       :section="section"
       theme="mid"
     />
-    <LibContentSectionWrapper>
-      <LibBaseButton @click="sendUserCertificate">
-        <template #text>
-          Send user certificate
-        </template>
-      </LibBaseButton>
-    </LibContentSectionWrapper>
     <span id="endOfContent" />
   </main>
 </template>

@@ -4,83 +4,85 @@
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <p>
-      Please complete all fields. After this form has been submitted, we will
-      email you a copy of your training certificate in PDF format.
-    </p>
-    <form class="flow flex flex-col">
-      <div v-for="(field, name, index) in form.fields" :key="index">
-        <LibFormGroupInput
-          v-if="field.el === 'input'"
-          v-model.trim="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :field-el="field.name"
-          :input-type="field.inputType"
-          :label="field.label"
-          :instructions="field.instructions"
-          :disabled="field.disabled"
-          :placeholder="field.placeholder"
-          :required="field.required"
-          :feedback="field.feedback"
-          :auto-focus="index === 0"
-          :field-wrapper-classes="field.wrapperClasses"
-          :v="$v.formData[field.name]"
-          :hidden="field.hidden ? field.hidden() : false"
-        />
-        <!-- Form select group -->
-        <LibFormGroupSelect
-          v-if="field.el === 'select'"
-          v-model="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :label="field.label"
-          :disabled="field.disabled"
-          :instructions="field.instructions"
-          :required="field.required"
-          :feedback="field.feedback"
-          :options="field.options"
-          :auto-focus="index === 0"
-          :v="$v.formData[field.name]"
-        />
-        <!-- Form checkbox group -->
-        <LibFormGroupCheckbox
-          v-if="field.el === 'checkbox'"
-          v-model="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :label="field.label"
-          :disabled="field.disabled"
-          :instructions="field.instructions"
-          :required="field.required"
-          :feedback="field.feedback"
-          :options="field.options"
-          :auto-focus="index === 0"
-          :v="$v.formData[field.name]"
-        />
-        <!-- Form radio group -->
-        <LibFormGroupRadioButton
-          v-if="field.el === 'radio'"
-          v-model="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :label="field.label"
-          :disabled="field.disabled"
-          :instructions="field.instructions"
-          :required="field.required"
-          :feedback="field.feedback"
-          :options="field.options"
-          :auto-focus="index === 0"
-          :v="$v.formData[field.name]"
-        />
-      </div>
-      <LibBaseButton
-        class="ml-auto"
-        btn-class="btn-dark"
-        :disabled="$v.$invalid"
-        @click.prevent="submit"
-      >
-        <template #text>
-          Submit
-        </template>
-      </LibBaseButton>
-    </form>
+    <template v-if="!surveyCompleted">
+      <p>
+        Please complete all fields. After this form has been submitted, we will
+        email you a copy of your training certificate in PDF format.
+      </p>
+      <form class="flow flex flex-col">
+        <div v-for="(field, name, index) in form.fields" :key="index">
+          <LibFormGroupInput
+            v-if="field.el === 'input'"
+            v-model.trim="$v.formData[field.name].$model"
+            :field-name="field.name"
+            :field-el="field.name"
+            :input-type="field.inputType"
+            :label="field.label"
+            :instructions="field.instructions"
+            :disabled="field.disabled"
+            :placeholder="field.placeholder"
+            :required="field.required"
+            :feedback="field.feedback"
+            :auto-focus="index === 0"
+            :field-wrapper-classes="field.wrapperClasses"
+            :v="$v.formData[field.name]"
+            :hidden="field.hidden ? field.hidden() : false"
+          />
+          <!-- Form select group -->
+          <LibFormGroupSelect
+            v-if="field.el === 'select'"
+            v-model="$v.formData[field.name].$model"
+            :field-name="field.name"
+            :label="field.label"
+            :disabled="field.disabled"
+            :instructions="field.instructions"
+            :required="field.required"
+            :feedback="field.feedback"
+            :options="field.options"
+            :auto-focus="index === 0"
+            :v="$v.formData[field.name]"
+          />
+          <!-- Form checkbox group -->
+          <LibFormGroupCheckbox
+            v-if="field.el === 'checkbox'"
+            v-model="$v.formData[field.name].$model"
+            :field-name="field.name"
+            :label="field.label"
+            :disabled="field.disabled"
+            :instructions="field.instructions"
+            :required="field.required"
+            :feedback="field.feedback"
+            :options="field.options"
+            :auto-focus="index === 0"
+            :v="$v.formData[field.name]"
+          />
+          <!-- Form radio group -->
+          <LibFormGroupRadioButton
+            v-if="field.el === 'radio'"
+            v-model="$v.formData[field.name].$model"
+            :field-name="field.name"
+            :label="field.label"
+            :disabled="field.disabled"
+            :instructions="field.instructions"
+            :required="field.required"
+            :feedback="field.feedback"
+            :options="field.options"
+            :auto-focus="index === 0"
+            :v="$v.formData[field.name]"
+          />
+        </div>
+        <LibBaseButton
+          class="ml-auto"
+          btn-class="btn-dark"
+          :disabled="$v.$invalid"
+          @click.prevent="submit"
+        >
+          <template #text>
+            Submit
+          </template>
+        </LibBaseButton>
+      </form>
+    </template>
   </div>
 </template>
 
@@ -105,6 +107,7 @@ export default {
         status: null,
       },
       formFeedbackMsgs: {
+        survey_completed: `You have already completed the training log. If you have any questions please email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>.`,
         submission_failed: `Sorry, we have been unable to process this form. Please try again or email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a> if the problem persists.`,
       },
       form: {
@@ -209,6 +212,17 @@ export default {
     traineeId() {
       return this.$auth.user.id
     },
+    surveyCompleted() {
+      return this.$auth.user.meta.survey_one_completed
+    },
+  },
+  mounted(){
+    if(this.surveyCompleted){
+        this.formFeedbackMsg = this.setFormFeedbackMsg(
+          this.formFeedbackMsgs.survey_completed,
+          'success'
+        )
+    }
   },
   methods: {
     submit() {
@@ -225,7 +239,7 @@ export default {
           this.$config.wpHeadlessUrl +
             `/wp-json/digitrial/v1/user/${this.traineeId}/survey/update`,
           {
-            section_one: {
+            survey_one: {
               confirm_completion: true,
               how_did_training_take_place: 'online',
               year_of_qualification: this.formData.yearOfQualification,
@@ -238,7 +252,9 @@ export default {
         )
         this.form.submitStatus = 'OK'
 
-        this.$router.push({ path: `/survey/training-feedback?action=certificate_sent` })
+        this.$router.push({
+          path: `/survey/training-feedback?action=certificate_sent`,
+        })
       } catch (error) {
         this.form.submitStatus = 'ERROR'
 
