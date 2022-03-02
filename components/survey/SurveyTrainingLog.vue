@@ -4,7 +4,19 @@
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <template v-if="!surveyCompleted">
+    <template v-if="surveyOneCompleted">
+      <p>
+        If you have not yet done so, we would be grateful if you could spare a minute to complete a <nuxt-link class="underline" to="/survey/training-feedback">
+          short survey
+        </nuxt-link> on your opinion of the training.
+      </p>
+      <LibBaseButtonLink class="block" link-url="/survey/training-feedback">
+        <template #text>
+          Complete feedback survey
+        </template>
+      </LibBaseButtonLink>
+    </template>
+    <template v-else>
       <p>
         Please complete all fields. After this form has been submitted, we will
         email you a copy of your training certificate in PDF format.
@@ -87,6 +99,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import { required, requiredIf } from 'vuelidate/lib/validators'
 
 import { dates } from '@/mixins/dates.js'
@@ -209,15 +223,15 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      surveyOneCompleted: (state) => state.trainee.surveyOneCompleted,
+    }),
     traineeId() {
       return this.$auth.user.id
     },
-    surveyCompleted() {
-      return this.$auth.user.meta.survey_one_completed
-    },
   },
   mounted(){
-    if(this.surveyCompleted){
+    if(this.surveyOneCompleted){
         this.formFeedbackMsg = this.setFormFeedbackMsg(
           this.formFeedbackMsgs.survey_completed,
           'success'
@@ -225,6 +239,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('trainee', ['setSurveyOneCompleted']),
     submit() {
       if (this.$v.$invalid) {
         this.$v.$touch()
@@ -250,6 +265,8 @@ export default {
             },
           }
         )
+        this.setSurveyOneCompleted(true)
+        
         this.form.submitStatus = 'OK'
 
         this.$router.push({

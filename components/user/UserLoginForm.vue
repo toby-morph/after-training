@@ -149,6 +149,7 @@ export default {
       'setStartedSteps',
       'setCurrentStepsVersion',
     ]),
+    ...mapActions('trainee', ['setSurveyOneCompleted', 'setSurveyTwoCompleted']),
     fieldAutoComplete(inputType) {
       // :auto-complete="fieldAutoComplete(field.inputType)"
       // removing auto-complete let browser handle this
@@ -176,6 +177,7 @@ export default {
 
         this.updateLastLogin(this.$auth.user.id)
         this.presetCompletedSteps(this.$auth.user.meta.last_step)
+        this.presetUserSurveyStatus(this.$auth.user.meta)
 
         this.form.submitStatus = 'OK'
 
@@ -202,6 +204,10 @@ export default {
       if (parseInt(userLastStep) > 0) {
         this.setStartedSteps(true)
       }
+    },
+    presetUserSurveyStatus(userMeta) {
+      this.setSurveyOneCompleted(userMeta.survey_one_completed)
+      this.setSurveyTwoCompleted(userMeta.survey_two_completed)
     },
     async updateLastLogin(userId) {
       const loginDateTime = this.getLoginDateTime()

@@ -4,7 +4,7 @@
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
-    <template v-if="!surveyCompleted">
+    <template v-if="!surveyTwoCompleted">
       <p>
         Please rate the following aspects of the AFTER intervention training,
         selecting one option for each question.
@@ -331,6 +331,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import { required } from 'vuelidate/lib/validators'
 
 import { dates } from '@/mixins/dates.js'
@@ -544,30 +546,34 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      surveyTwoCompleted: (state) => state.trainee.surveyTwoCompleted,
+    }),
     traineeId() {
       return this.$auth.user.id
     },
-    surveyCompleted() {
-      return this.$auth.user.meta.survey_two_completed
+    certificateSent() {
+      return (
+        this.$route.query.action &&
+        this.$route.query.action === 'certificate_sent'
+      )
     },
-    certificateSent(){
-      return this.$route.query.action && this.$route.query.action === 'certificate_sent'
-    }
   },
   mounted() {
-    if (this.surveyCompleted) {
+    if (this.surveyTwoCompleted) {
       this.formFeedbackMsg = this.setFormFeedbackMsg(
         this.formFeedbackMsgs.survey_completed,
         'success'
       )
-    } else if(this.certificateSent){
-              this.formFeedbackMsg = this.setFormFeedbackMsg(
+    } else if (this.certificateSent) {
+      this.formFeedbackMsg = this.setFormFeedbackMsg(
         this.formFeedbackMsgs.certificate_sent,
         'success'
       )
-      }
+    }
   },
   methods: {
+    ...mapActions('trainee', ['setSurveyTwoCompleted']),
     submit() {
       if (this.$v.$invalid) {
         this.$v.$touch()
@@ -587,6 +593,8 @@ export default {
             },
           }
         )
+        this.setSurveyTwoCompleted(true)
+
         this.form.submitStatus = 'OK'
       } catch (error) {
         this.form.submitStatus = 'ERROR'
