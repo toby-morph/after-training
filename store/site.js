@@ -177,12 +177,9 @@ export const actions = {
       const trialSites = await this.$axios.get(
         this.$config.siteUrl + '/.netlify/functions/get-trial-sites'
       )
-      // console.log(trialSites)
       commit('SET_TRIAL_SITES', trialSites.data)
       return true
-      // console.log(response)
     } catch (err) {
-      // console.log(err)
       return false
     }
   },

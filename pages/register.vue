@@ -12,14 +12,17 @@
 <script>
 export default {
   auth: false,
-  async middleware({ store, commit }) {
+  async middleware({ store, error }) {
     if (store.state.site.trialSites.length === 0) {
       try {
         const trialSites = await store.dispatch('site/setTrialSites')
-        commit('SET_TRIAL_SITES', trialSites.data)
-        return true
+        if (!trialSites) {
+          throw new Error('Failed to load trial sites')
+        } else {
+          return true
+        }
       } catch (err) {
-        return this.$nuxt.error({ statusCode: 404, message: 'err message' })
+        return error({ statusCode: 500, message: 'Failed to load trial sites' })
       }
     }
   },
