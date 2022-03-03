@@ -1,7 +1,11 @@
 <template>
   <main class="main">
     <template v-if="error.statusCode === 404">
-      <PitPageTitle page-title="Ooops... page not found!" />
+      <LibBasePageTitle>
+        <template #page-title>
+          Ooops... page not found!
+        </template>
+      </LibBasePageTitle>
       <LibContentSectionWrapper>
         <div class="md:flex md:flex-row md:items-top">
           <div class="mb-4 md:w-7/12 md:mb-0">
@@ -19,15 +23,24 @@
       </LibContentSectionWrapper>
     </template>
     <template v-else>
-      <PitPageTitle page-title="Error" />
+      <LibBasePageTitle>
+        <template #page-title>
+          Error
+        </template>
+      </LibBasePageTitle>
       <LibContentSectionWrapper>
-        <p>Sorry, there's been an error</p>
-        <p>
-          If you are looking for {{ siteName }}
-          <NuxtLink to="/">
-            click here to get started
-          </NuxtLink>.
-        </p>
+        <div class="flow">
+          <p>Sorry, there's been an error.</p>
+          <p>
+            If you are looking for {{ siteName }}
+            <LibBaseLink class="underline" link="/">
+              click here to get started
+            </LibBaseLink>.
+          </p>
+          <p>
+            If the problem persists, please contact <a class="underline" :href="`mailto:${$config.siteAdminEmail}`">{{ $config.siteAdminEmail }}</a>
+          </p>
+        </div>
       </LibContentSectionWrapper>
     </template>
   </main>

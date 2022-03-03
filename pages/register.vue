@@ -12,6 +12,17 @@
 <script>
 export default {
   auth: false,
+  async middleware({ store, commit }) {
+    if (store.state.site.trialSites.length === 0) {
+      try {
+        const trialSites = await store.dispatch('site/setTrialSites')
+        commit('SET_TRIAL_SITES', trialSites.data)
+        return true
+      } catch (err) {
+        return this.$nuxt.error({ statusCode: 404, message: 'err message' })
+      }
+    }
+  },
 }
 </script>
 
