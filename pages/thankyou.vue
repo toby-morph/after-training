@@ -40,7 +40,7 @@ export default {
     ...mapGetters('steps', ['getStepByNumber']),
   },
   mounted() {
-    this.gaLogEvent('Finished')
+    this.gaLogEvent('Where: Finished')
   },
   created() {
     this.step = this.getStepByNumber(this.currentStep)

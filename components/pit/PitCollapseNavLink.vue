@@ -92,7 +92,7 @@ export default {
   methods: {
     ...mapActions('site', ['setTooltipIsOpen', 'setDisabledLinkClicked']),
     handleLinkClick() {
-      this.gaLogEvent('Menu Link', { destination: this.route })
+      this.gaLogEvent('Nav: Menu Link, destination ' + this.route)
       if (this.isEnabled) {
         this.$emit('enabled-click')
       } else {

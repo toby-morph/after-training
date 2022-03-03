@@ -11,6 +11,7 @@
             rounded
           "
           to="/get-started"
+          @click.native="registerLogoClickEvent"
         >
           <LibBaseImg class="w-full h-full" :src="logo.url" :alt="logo.alt" />
         </nuxt-link>
@@ -30,10 +31,12 @@
 
 <script>
 import { mapState } from 'vuex'
+
 import { currentPage } from '@/mixins/currentPage.js'
+import { GAMethods } from '@/mixins/GAMethods.js'
 
 export default {
-  mixins: [currentPage],
+  mixins: [currentPage, GAMethods],
   computed: {
     ...mapState({
       logo: (state) => state.site.logo,
@@ -47,6 +50,11 @@ export default {
     },
     showMainNav() {
       return this.$appUser.isLoggedIn()
+    },
+  },
+  methods: {
+    registerLogoClickEvent() {
+      this.gaLogEvent('Nav: Back to Home logo clicked')
     },
   },
 }

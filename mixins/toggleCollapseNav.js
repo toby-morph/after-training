@@ -28,7 +28,7 @@ export const toggleCollapseNav = {
         htmlClassList.remove('overflow-hidden')
         navOpenEvent = { OpenClose: 'close' }
       }
-      this.gaLogEvent('Toggle Menu', navOpenEvent)
+      this.gaLogEvent('Nav: Toggle Menu', navOpenEvent)
     },
   },
 }

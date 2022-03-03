@@ -34,7 +34,7 @@ export const fullScreen = {
       if (!this.exitedFullScreen && !fullscreen) {
         this.setExitedFullScreen(true)
       }
-      this.gaLogEvent('Full Screen', { fullscreen })
+      this.gaLogEvent('Prefs: Full Screen', { fullscreen })
       this.setFullScreen(fullscreen)
     },
   },

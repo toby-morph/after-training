@@ -124,8 +124,10 @@ export default {
           ? '/thankyou' // 100 = default step number for Thank you page
           : '/steps/' + parseInt(this.currentStep + 1)
         const path = nextStep
-        const logEvent = '[STEP: ' + this.currentStep + '] Clicked Next Step'
-        this.gaLogEvent(logEvent)
+
+        this.gaLogEvent('Nav: Clicked next after viewing all content', { 
+          page: window.location.pathname })
+          
         this.addCompletedStep(this.currentStep)
         this.$router.push(path)
       }

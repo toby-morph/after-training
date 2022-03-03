@@ -39,7 +39,8 @@ export const state = () => ({
   preCacheSize: sitePreCacheDetails.size,
   preCacheTotalCount: sitePreCacheDetails.count,
   preCacheCurrentCount: null,
-  trialSites: []
+  trialSites: [],
+  videos: [],
 })
 
 export const getters = {
@@ -115,6 +116,12 @@ export const mutations = {
   SET_TRIAL_SITES: (state, trialSites) => {
     state.trialSites = trialSites
   },
+  SET_VIDEO_PROGRESS: (state, videoProgress) => {
+    state.videos.push (videoProgress)
+  },
+  UPDATE_VIDEO_PROGRESS: (state, {videoIndex, videoCurrentProgress}) => {
+    state.videos[videoIndex].videoProgress = videoCurrentProgress;
+  }, 
 }
 
 export const actions = {
@@ -182,5 +189,11 @@ export const actions = {
     } catch (err) {
       return false
     }
+  },
+  setVideoProgress({ commit }, videoProgress) {
+    commit('SET_VIDEO_PROGRESS', videoProgress)
+  },
+  updateVideoProgress({ commit }, {videoIndex, videoCurrentProgress}) {
+    commit('UPDATE_VIDEO_PROGRESS', {videoIndex, videoCurrentProgress})
   },
 }

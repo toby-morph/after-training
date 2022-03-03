@@ -15,7 +15,8 @@ export const disabledButtonMessage = {
       if (!this.isEnabled) {
         const tooltipToOpen = this.$refs.tooltip.uuid
         this.openTooltip(tooltipToOpen)
-
+        this.gaLogEvent('Nav: Clicked next before viewing all content', { 
+          page: window.location.pathname })
         this.hideTooltipOnScroll()
       }
     },

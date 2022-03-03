@@ -97,11 +97,7 @@ export default {
       this.$announcer.set(`Navigated to ${pagetitle}`)
     },
     logPageView() {
-      const eventText = 'Page View'
-      // const eventProperty = document.URL + ' ' + document.title
-      const eventProperty = { page: window.location.pathname }
-
-      this.gaLogEvent(eventText, eventProperty)
+      this.gaLogEvent('Where: Page View - ' + window.location.pathname)
     },
     setAriaCurrent() {
       const app = this.$el

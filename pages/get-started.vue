@@ -38,9 +38,10 @@ import { mapState, mapGetters } from 'vuex'
 import { step } from '@/mixins/step.js'
 import { scrolledToBottom } from '@/mixins/scrolledToBottom.js'
 import { pageTransitions } from '@/mixins/pageTransitions.js'
+import { GAMethods } from '@/mixins/GAMethods.js'
 
 export default {
-  mixins: [step, scrolledToBottom, pageTransitions],
+  mixins: [step, scrolledToBottom, pageTransitions, GAMethods],
   data() {
     return {
       step: null,
@@ -54,6 +55,7 @@ export default {
   },
   mounted() {
     this.setScrolledToBottom(false)
+    this.gaLogEvent('Where: Get Started')
   },
   created() {
     this.step = this.getStepByNumber(this.currentStep)

@@ -84,16 +84,11 @@ export default {
     },
     leavePage(to) {
       this.$root.$emit('movedNextPage', 0)
-      const timeOnPage = (new Date() - this.timePageLoaded) / 1000
-      this.gaLogEvent(window.location.pathname, {
-        'Time on page': timeOnPage,
-      })
+
       const nextStep = parseInt(to.params.step)
       if (nextStep in this.completedSteps) {
-        // if (this.currentStep in this.completedSteps) {
-        //   const nextStep = parseInt(to.params.step)
-        const eventProp = { 'From/To': this.currentStep + '->' + nextStep }
-        this.gaLogEvent('Page Revisit', eventProp)
+        const eventProp = { 'FromTo': this.currentStep + '->' + nextStep }
+        this.gaLogEvent('Where: Page Revisit', eventProp)
       }
     },
   },

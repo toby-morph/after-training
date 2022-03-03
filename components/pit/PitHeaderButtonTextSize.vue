@@ -57,7 +57,7 @@ export default {
       } else {
         textSize = { size: 'standard' }
       }
-      this.gaLogEvent('Toggle Text Size', textSize)
+      this.gaLogEvent('Prefs: Toggle Text Size', textSize)
     },
   },
 }

@@ -59,13 +59,14 @@ import { mapState, mapActions } from 'vuex'
 import { scrolledToBottom } from '@/mixins/scrolledToBottom.js'
 import { fullScreen } from '@/mixins/fullScreen.js'
 import { disabledButtonMessage } from '@/mixins/disabledButtonMessage.js'
+import { GAMethods } from '@/mixins/GAMethods.js'
 
 import NextIcon from '@/assets/icons/arrow-right-sm.svg?inline'
 export default {
   components: {
     NextIcon,
   },
-  mixins: [scrolledToBottom, fullScreen, disabledButtonMessage],
+  mixins: [scrolledToBottom, fullScreen, disabledButtonMessage, GAMethods],
   props: {
     theme: {
       type: String,
@@ -107,7 +108,7 @@ export default {
       this.setHasRefreshed(false)
       this.startFullScreen()
       this.goToFirstStep()
-      this.gaLogEvent('Start')
+      this.gaLogEvent('Nav: Start')
     },
     goToFirstStep() {
       const path = '/steps/1'

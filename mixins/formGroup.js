@@ -144,10 +144,5 @@ export const formGroup = {
             }
             touchMap.set($v, setTimeout($v.$touch, 1000))
         },
-        onBlur() {
-            if (this.formGroupRequired) {
-                this.delayTouch(this.v)
-            }
-        },
     },
 }

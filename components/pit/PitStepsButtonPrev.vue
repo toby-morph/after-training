@@ -29,13 +29,15 @@
 import { mapState } from 'vuex'
 
 import { currentPage } from '@/mixins/currentPage.js'
+import { GAMethods } from '@/mixins/GAMethods.js'
+
 import PrevIcon from '@/assets/icons/arrow-left-sm.svg?inline'
 
 export default {
   components: {
     PrevIcon,
   },
-  mixins: [currentPage],
+  mixins: [currentPage, GAMethods],
   props: {
     theme: {
       type: String,
@@ -56,6 +58,10 @@ export default {
   methods: {
     prevStep() {
       if (this.prevEnabled) {
+        this.gaLogEvent('Nav: Clicked previous', {
+          page: window.location.pathname,
+        })
+
         let path = null
         let prevStep = 0
         // if thank you page, return to last completed step (should be last step)

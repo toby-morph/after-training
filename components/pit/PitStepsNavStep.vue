@@ -9,6 +9,7 @@
         "
         :class="isCurrentStep ? 'pointer-events-none' : ''"
         :to="'/steps/' + step.step_number"
+        @click.native="registerNavStepClickEvent(step.step_number)"
       >
         <PitStepNumIcon
           :class="navIconClass"
@@ -52,9 +53,10 @@
 import { mapActions } from 'vuex'
 
 import { disabledButtonMessage } from '@/mixins/disabledButtonMessage.js'
+import { GAMethods } from '@/mixins/GAMethods.js'
 
 export default {
-  mixins: [disabledButtonMessage],
+  mixins: [disabledButtonMessage, GAMethods],
   props: {
     isCompletedStep: {
       type: Boolean,
@@ -107,6 +109,9 @@ export default {
       if (!this.isCurrentStep) {
         this.showDisabledMessage()
       }
+    },
+    registerNavStepClickEvent(step) {
+      this.gaLogEvent('Nav: Step number clicked', { destination: step })
     },
   },
 }
