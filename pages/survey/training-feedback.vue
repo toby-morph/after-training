@@ -1,14 +1,10 @@
 <template>
   <main class="main">
-    <LibBasePageTitle
-      :page-strapline="siteStrapline"
-    >
-      <template #page-title>
-        Training feedback
-      </template>
-    </LibBasePageTitle>
-    <div class="flex items-center justify-center container mx-auto">
+    <div class="flex items-center justify-center py-8">
       <div class="w-5/6 max-w-4xl bg-white rounded-lg p-8 flow">
+        <LibBaseHtmlHeader level="1" header-font-size="3">
+          AFTER intervention training feedback
+        </LibBaseHtmlHeader>
         <SurveyTrainingFeedback />
       </div>
     </div>

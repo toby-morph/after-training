@@ -6,9 +6,11 @@ export default ({ store }) => {
   createPersistedState({
     key: 'morph-vuex',
     paths: [
-      // 'steps.totalActiveSteps',
-      // 'steps.completedSteps',
-      // 'steps.startedSteps',
+      'steps.totalActiveSteps',
+      'steps.completedSteps',
+      'steps.startedSteps',
+      'trainee.surveyOneCompleted',
+      'trainee.surveyTwoCompleted',
       // 'steps.currentStepsVersion',
       // 'site.deviceOfflineEnabled',
       // 'site.deviceUserResetEnabled',

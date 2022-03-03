@@ -5,16 +5,18 @@
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
     <template v-if="surveyOneCompleted">
-      <p>
-        If you have not yet done so, we would be grateful if you could spare a minute to complete a <nuxt-link class="underline" to="/survey/training-feedback">
-          short survey
-        </nuxt-link> on your opinion of the training.
-      </p>
-      <LibBaseButtonLink class="block" link-url="/survey/training-feedback">
-        <template #text>
-          Complete feedback survey
-        </template>
-      </LibBaseButtonLink>
+      <div v-if="!surveyTwoCompleted" class="flow flex flex-col">
+        <p>
+          We would be grateful if you could spare a minute to complete a <nuxt-link class="underline" to="/survey/training-feedback">
+            short survey
+          </nuxt-link> on your opinion of the training.
+        </p>
+        <LibBaseButtonLink class="block ml-auto" link-url="/survey/training-feedback">
+          <template #text>
+            Complete short survey
+          </template>
+        </LibBaseButtonLink>
+      </div>
     </template>
     <template v-else>
       <p>
@@ -225,6 +227,7 @@ export default {
   computed: {
     ...mapState({
       surveyOneCompleted: (state) => state.trainee.surveyOneCompleted,
+      surveyTwoCompleted: (state) => state.trainee.surveyTwoCompleted,
     }),
     traineeId() {
       return this.$auth.user.id

@@ -59,7 +59,7 @@
           "links": [
             {
               "target": false,
-              "title": "Complete survey to recieve certificate",
+              "title": "Get certificate of training",
               "url": "/survey/training-log",
               "logEvent": "Complete training log",
               "logEventProperty": "Complete training log",

@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 border-t border-grey-mid-light">
+  <div class="pt-8 border-t border-grey-mid-light">
     <fieldset class="flow block">
       <legend class="font-bold">
         <slot name="legend">

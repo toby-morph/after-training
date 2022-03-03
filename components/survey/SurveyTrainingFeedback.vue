@@ -6,247 +6,248 @@
     </UserFormFeedback>
     <template v-if="!surveyTwoCompleted">
       <p>
-        Please rate the following aspects of the AFTER intervention training,
-        selecting one option for each question.
+        We would appreciate it if you could complete a short survey on your training experience.
+        Please rate the following aspects of the training, selecting one option for each question.
       </p>
-      <form class="flow flex flex-col">
-        <LibBaseHtmlHeader level="2" header-font-size="4">
-          1: Sections of training
-        </LibBaseHtmlHeader>
+      <form>
+        <div class="flow flex flex-col gap-4 py-8">
+          <LibBaseHtmlHeader level="2" header-font-size="4">
+            1: Sections of training
+          </LibBaseHtmlHeader>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            Background and overview of AFTER study
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.backgroundContent.$model"
-              :field-name="form.fields.backgroundContent.name"
-              :label="form.fields.backgroundContent.label"
-              :disabled="form.fields.backgroundContent.disabled"
-              :instructions="form.fields.backgroundContent.instructions"
-              :required="form.fields.backgroundContent.required"
-              :feedback="form.fields.backgroundContent.feedback"
-              :options="form.fields.backgroundContent.options"
-              :auto-focus="true"
-              :v="$v.formData.backgroundContent"
-              :layout="form.fields.backgroundContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.backgroundDelivery.$model"
-              :field-name="form.fields.backgroundDelivery.name"
-              :label="form.fields.backgroundDelivery.label"
-              :disabled="form.fields.backgroundDelivery.disabled"
-              :instructions="form.fields.backgroundDelivery.instructions"
-              :required="form.fields.backgroundDelivery.required"
-              :feedback="form.fields.backgroundDelivery.feedback"
-              :options="form.fields.backgroundDelivery.options"
-              :v="$v.formData.backgroundDelivery"
-              :layout="form.fields.backgroundDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              Background and overview of AFTER study
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.backgroundContent.$model"
+                :field-name="form.fields.backgroundContent.name"
+                :label="form.fields.backgroundContent.label"
+                :disabled="form.fields.backgroundContent.disabled"
+                :instructions="form.fields.backgroundContent.instructions"
+                :required="form.fields.backgroundContent.required"
+                :feedback="form.fields.backgroundContent.feedback"
+                :options="form.fields.backgroundContent.options"
+                :auto-focus="true"
+                :v="$v.formData.backgroundContent"
+                :layout="form.fields.backgroundContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.backgroundDelivery.$model"
+                :field-name="form.fields.backgroundDelivery.name"
+                :label="form.fields.backgroundDelivery.label"
+                :disabled="form.fields.backgroundDelivery.disabled"
+                :instructions="form.fields.backgroundDelivery.instructions"
+                :required="form.fields.backgroundDelivery.required"
+                :feedback="form.fields.backgroundDelivery.feedback"
+                :options="form.fields.backgroundDelivery.options"
+                :v="$v.formData.backgroundDelivery"
+                :layout="form.fields.backgroundDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            Education and advice
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.educationContent.$model"
-              :field-name="form.fields.educationContent.name"
-              :label="form.fields.educationContent.label"
-              :disabled="form.fields.educationContent.disabled"
-              :instructions="form.fields.educationContent.instructions"
-              :required="form.fields.educationContent.required"
-              :feedback="form.fields.educationContent.feedback"
-              :options="form.fields.educationContent.options"
-              :auto-focus="true"
-              :v="$v.formData.educationContent"
-              :layout="form.fields.educationContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.educationDelivery.$model"
-              :field-name="form.fields.educationDelivery.name"
-              :label="form.fields.educationDelivery.label"
-              :disabled="form.fields.educationDelivery.disabled"
-              :instructions="form.fields.educationDelivery.instructions"
-              :required="form.fields.educationDelivery.required"
-              :feedback="form.fields.educationDelivery.feedback"
-              :options="form.fields.educationDelivery.options"
-              :v="$v.formData.educationDelivery"
-              :layout="form.fields.educationDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              Education and advice
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.educationContent.$model"
+                :field-name="form.fields.educationContent.name"
+                :label="form.fields.educationContent.label"
+                :disabled="form.fields.educationContent.disabled"
+                :instructions="form.fields.educationContent.instructions"
+                :required="form.fields.educationContent.required"
+                :feedback="form.fields.educationContent.feedback"
+                :options="form.fields.educationContent.options"
+                :auto-focus="true"
+                :v="$v.formData.educationContent"
+                :layout="form.fields.educationContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.educationDelivery.$model"
+                :field-name="form.fields.educationDelivery.name"
+                :label="form.fields.educationDelivery.label"
+                :disabled="form.fields.educationDelivery.disabled"
+                :instructions="form.fields.educationDelivery.instructions"
+                :required="form.fields.educationDelivery.required"
+                :feedback="form.fields.educationDelivery.feedback"
+                :options="form.fields.educationDelivery.options"
+                :v="$v.formData.educationDelivery"
+                :layout="form.fields.educationDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            Exercises
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.exercisesContent.$model"
-              :field-name="form.fields.exercisesContent.name"
-              :label="form.fields.exercisesContent.label"
-              :disabled="form.fields.exercisesContent.disabled"
-              :instructions="form.fields.exercisesContent.instructions"
-              :required="form.fields.exercisesContent.required"
-              :feedback="form.fields.exercisesContent.feedback"
-              :options="form.fields.exercisesContent.options"
-              :auto-focus="true"
-              :v="$v.formData.exercisesContent"
-              :layout="form.fields.exercisesContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.exercisesDelivery.$model"
-              :field-name="form.fields.exercisesDelivery.name"
-              :label="form.fields.exercisesDelivery.label"
-              :disabled="form.fields.exercisesDelivery.disabled"
-              :instructions="form.fields.exercisesDelivery.instructions"
-              :required="form.fields.exercisesDelivery.required"
-              :feedback="form.fields.exercisesDelivery.feedback"
-              :options="form.fields.exercisesDelivery.options"
-              :v="$v.formData.exercisesDelivery"
-              :layout="form.fields.exercisesDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              Exercises
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.exercisesContent.$model"
+                :field-name="form.fields.exercisesContent.name"
+                :label="form.fields.exercisesContent.label"
+                :disabled="form.fields.exercisesContent.disabled"
+                :instructions="form.fields.exercisesContent.instructions"
+                :required="form.fields.exercisesContent.required"
+                :feedback="form.fields.exercisesContent.feedback"
+                :options="form.fields.exercisesContent.options"
+                :auto-focus="true"
+                :v="$v.formData.exercisesContent"
+                :layout="form.fields.exercisesContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.exercisesDelivery.$model"
+                :field-name="form.fields.exercisesDelivery.name"
+                :label="form.fields.exercisesDelivery.label"
+                :disabled="form.fields.exercisesDelivery.disabled"
+                :instructions="form.fields.exercisesDelivery.instructions"
+                :required="form.fields.exercisesDelivery.required"
+                :feedback="form.fields.exercisesDelivery.feedback"
+                :options="form.fields.exercisesDelivery.options"
+                :v="$v.formData.exercisesDelivery"
+                :layout="form.fields.exercisesDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            Exercise adherence techniques
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.techniquesContent.$model"
-              :field-name="form.fields.techniquesContent.name"
-              :label="form.fields.techniquesContent.label"
-              :disabled="form.fields.techniquesContent.disabled"
-              :instructions="form.fields.techniquesContent.instructions"
-              :required="form.fields.techniquesContent.required"
-              :feedback="form.fields.techniquesContent.feedback"
-              :options="form.fields.techniquesContent.options"
-              :auto-focus="true"
-              :v="$v.formData.techniquesContent"
-              :layout="form.fields.techniquesContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.techniquesDelivery.$model"
-              :field-name="form.fields.techniquesDelivery.name"
-              :label="form.fields.techniquesDelivery.label"
-              :disabled="form.fields.techniquesDelivery.disabled"
-              :instructions="form.fields.techniquesDelivery.instructions"
-              :required="form.fields.techniquesDelivery.required"
-              :feedback="form.fields.techniquesDelivery.feedback"
-              :options="form.fields.techniquesDelivery.options"
-              :v="$v.formData.techniquesDelivery"
-              :layout="form.fields.techniquesDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              Exercise adherence techniques
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.techniquesContent.$model"
+                :field-name="form.fields.techniquesContent.name"
+                :label="form.fields.techniquesContent.label"
+                :disabled="form.fields.techniquesContent.disabled"
+                :instructions="form.fields.techniquesContent.instructions"
+                :required="form.fields.techniquesContent.required"
+                :feedback="form.fields.techniquesContent.feedback"
+                :options="form.fields.techniquesContent.options"
+                :auto-focus="true"
+                :v="$v.formData.techniquesContent"
+                :layout="form.fields.techniquesContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.techniquesDelivery.$model"
+                :field-name="form.fields.techniquesDelivery.name"
+                :label="form.fields.techniquesDelivery.label"
+                :disabled="form.fields.techniquesDelivery.disabled"
+                :instructions="form.fields.techniquesDelivery.instructions"
+                :required="form.fields.techniquesDelivery.required"
+                :feedback="form.fields.techniquesDelivery.feedback"
+                :options="form.fields.techniquesDelivery.options"
+                :v="$v.formData.techniquesDelivery"
+                :layout="form.fields.techniquesDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            AFTER workbooks
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.workbooksContent.$model"
-              :field-name="form.fields.workbooksContent.name"
-              :label="form.fields.workbooksContent.label"
-              :disabled="form.fields.workbooksContent.disabled"
-              :instructions="form.fields.workbooksContent.instructions"
-              :required="form.fields.workbooksContent.required"
-              :feedback="form.fields.workbooksContent.feedback"
-              :options="form.fields.workbooksContent.options"
-              :auto-focus="true"
-              :v="$v.formData.workbooksContent"
-              :layout="form.fields.workbooksContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.workbooksDelivery.$model"
-              :field-name="form.fields.workbooksDelivery.name"
-              :label="form.fields.workbooksDelivery.label"
-              :disabled="form.fields.workbooksDelivery.disabled"
-              :instructions="form.fields.workbooksDelivery.instructions"
-              :required="form.fields.workbooksDelivery.required"
-              :feedback="form.fields.workbooksDelivery.feedback"
-              :options="form.fields.workbooksDelivery.options"
-              :v="$v.formData.workbooksDelivery"
-              :layout="form.fields.workbooksDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              AFTER workbooks
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.workbooksContent.$model"
+                :field-name="form.fields.workbooksContent.name"
+                :label="form.fields.workbooksContent.label"
+                :disabled="form.fields.workbooksContent.disabled"
+                :instructions="form.fields.workbooksContent.instructions"
+                :required="form.fields.workbooksContent.required"
+                :feedback="form.fields.workbooksContent.feedback"
+                :options="form.fields.workbooksContent.options"
+                :auto-focus="true"
+                :v="$v.formData.workbooksContent"
+                :layout="form.fields.workbooksContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.workbooksDelivery.$model"
+                :field-name="form.fields.workbooksDelivery.name"
+                :label="form.fields.workbooksDelivery.label"
+                :disabled="form.fields.workbooksDelivery.disabled"
+                :instructions="form.fields.workbooksDelivery.instructions"
+                :required="form.fields.workbooksDelivery.required"
+                :feedback="form.fields.workbooksDelivery.feedback"
+                :options="form.fields.workbooksDelivery.options"
+                :v="$v.formData.workbooksDelivery"
+                :layout="form.fields.workbooksDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            AFTER website
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.websiteContent.$model"
-              :field-name="form.fields.websiteContent.name"
-              :label="form.fields.websiteContent.label"
-              :disabled="form.fields.websiteContent.disabled"
-              :instructions="form.fields.websiteContent.instructions"
-              :required="form.fields.websiteContent.required"
-              :feedback="form.fields.websiteContent.feedback"
-              :options="form.fields.websiteContent.options"
-              :auto-focus="true"
-              :v="$v.formData.websiteContent"
-              :layout="form.fields.websiteContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.websiteDelivery.$model"
-              :field-name="form.fields.websiteDelivery.name"
-              :label="form.fields.websiteDelivery.label"
-              :disabled="form.fields.websiteDelivery.disabled"
-              :instructions="form.fields.websiteDelivery.instructions"
-              :required="form.fields.websiteDelivery.required"
-              :feedback="form.fields.websiteDelivery.feedback"
-              :options="form.fields.websiteDelivery.options"
-              :v="$v.formData.websiteDelivery"
-              :layout="form.fields.websiteDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
+          <SurveyFormFieldset>
+            <template #legend>
+              AFTER website
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.websiteContent.$model"
+                :field-name="form.fields.websiteContent.name"
+                :label="form.fields.websiteContent.label"
+                :disabled="form.fields.websiteContent.disabled"
+                :instructions="form.fields.websiteContent.instructions"
+                :required="form.fields.websiteContent.required"
+                :feedback="form.fields.websiteContent.feedback"
+                :options="form.fields.websiteContent.options"
+                :auto-focus="true"
+                :v="$v.formData.websiteContent"
+                :layout="form.fields.websiteContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.websiteDelivery.$model"
+                :field-name="form.fields.websiteDelivery.name"
+                :label="form.fields.websiteDelivery.label"
+                :disabled="form.fields.websiteDelivery.disabled"
+                :instructions="form.fields.websiteDelivery.instructions"
+                :required="form.fields.websiteDelivery.required"
+                :feedback="form.fields.websiteDelivery.feedback"
+                :options="form.fields.websiteDelivery.options"
+                :v="$v.formData.websiteDelivery"
+                :layout="form.fields.websiteDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
 
-        <SurveyFormFieldset>
-          <template #legend>
-            Trial reporting and documentation
-          </template>
-          <template #fields>
-            <LibFormGroupRadioButton
-              v-model="$v.formData.documentationContent.$model"
-              :field-name="form.fields.documentationContent.name"
-              :label="form.fields.documentationContent.label"
-              :disabled="form.fields.documentationContent.disabled"
-              :instructions="form.fields.documentationContent.instructions"
-              :required="form.fields.documentationContent.required"
-              :feedback="form.fields.documentationContent.feedback"
-              :options="form.fields.documentationContent.options"
-              :auto-focus="true"
-              :v="$v.formData.documentationContent"
-              :layout="form.fields.documentationContent.layout"
-            />
-            <LibFormGroupRadioButton
-              v-model="$v.formData.documentationDelivery.$model"
-              :field-name="form.fields.documentationDelivery.name"
-              :label="form.fields.documentationDelivery.label"
-              :disabled="form.fields.documentationDelivery.disabled"
-              :instructions="form.fields.documentationDelivery.instructions"
-              :required="form.fields.documentationDelivery.required"
-              :feedback="form.fields.documentationDelivery.feedback"
-              :options="form.fields.documentationDelivery.options"
-              :v="$v.formData.documentationDelivery"
-              :layout="form.fields.documentationDelivery.layout"
-            />
-          </template>
-        </SurveyFormFieldset>
-
-        <div class="flow pt-8">
-          <LibBaseHtmlHeader class="mb-8" level="2" header-font-size="4">
+          <SurveyFormFieldset>
+            <template #legend>
+              Trial reporting and documentation
+            </template>
+            <template #fields>
+              <LibFormGroupRadioButton
+                v-model="$v.formData.documentationContent.$model"
+                :field-name="form.fields.documentationContent.name"
+                :label="form.fields.documentationContent.label"
+                :disabled="form.fields.documentationContent.disabled"
+                :instructions="form.fields.documentationContent.instructions"
+                :required="form.fields.documentationContent.required"
+                :feedback="form.fields.documentationContent.feedback"
+                :options="form.fields.documentationContent.options"
+                :auto-focus="true"
+                :v="$v.formData.documentationContent"
+                :layout="form.fields.documentationContent.layout"
+              />
+              <LibFormGroupRadioButton
+                v-model="$v.formData.documentationDelivery.$model"
+                :field-name="form.fields.documentationDelivery.name"
+                :label="form.fields.documentationDelivery.label"
+                :disabled="form.fields.documentationDelivery.disabled"
+                :instructions="form.fields.documentationDelivery.instructions"
+                :required="form.fields.documentationDelivery.required"
+                :feedback="form.fields.documentationDelivery.feedback"
+                :options="form.fields.documentationDelivery.options"
+                :v="$v.formData.documentationDelivery"
+                :layout="form.fields.documentationDelivery.layout"
+              />
+            </template>
+          </SurveyFormFieldset>
+        </div>
+        <div class="flow flex flex-col gap-4 py-8">
+          <LibBaseHtmlHeader level="2" header-font-size="4">
             2: Overall opinion of training
           </LibBaseHtmlHeader>
 
@@ -357,7 +358,7 @@ const sectionOneFieldPresets = {
       label: 'Poor',
     },
   ],
-  layout: 'horizontal',
+  layout: 'vertical',
   instructions: null,
 }
 const sectionTwoFieldPresets = {
@@ -384,7 +385,7 @@ const sectionTwoFieldPresets = {
       label: 'Strongly disagree',
     },
   ],
-  layout: 'horizontal',
+  layout: 'vertical',
   instructions: null,
 }
 
@@ -421,6 +422,7 @@ export default {
         certificate_sent: `Thank you, we have sent you a personalised training certificate (in PDF format) as an email attachment.`,
         survey_completed: `You have already completed the training feedback form. If you have any questions please email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>.`,
         submission_failed: `Sorry, we have been unable to process this form. Please try again or email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a> if the problem persists.`,
+        submission_succeeded: `Thank you for providing feedback on your AFTER intervention training experience.`,
       },
       form: {
         submitStatus: null,
@@ -594,6 +596,11 @@ export default {
           }
         )
         this.setSurveyTwoCompleted(true)
+
+        this.formFeedbackMsg = this.setFormFeedbackMsg(
+          this.formFeedbackMsgs.submission_succeeded,
+          'success'
+        )
 
         this.form.submitStatus = 'OK'
       } catch (error) {

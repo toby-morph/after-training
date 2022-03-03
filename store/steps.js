@@ -73,6 +73,9 @@ export const mutations = {
 }
 
 export const actions = {
+  resetStepsStore({ commit }) {
+    commit('RESET_STEPS_STORE')
+  },
   loadAllSteps({ commit, dispatch }, stepsData) {
     commit('UPDATE_STEPS', stepsData)
     dispatch('setTotalActiveSteps')
@@ -125,8 +128,5 @@ export const actions = {
     })
     const totalActiveSteps = activeSteps.length
     commit('SET_TOTAL_ACTIVE_STEPS', totalActiveSteps)
-  },
-  resetStepsStore({ commit }) {
-    commit('RESET_STEPS_STORE')
   },
 }
