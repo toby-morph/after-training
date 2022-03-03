@@ -14,7 +14,7 @@
       z-40
     "
   >
-    <UserLoadingIcon />
+    <WidgetLoadingIcon />
   </div>
 </template>
 

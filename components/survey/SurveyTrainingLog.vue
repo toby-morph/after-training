@@ -1,6 +1,6 @@
 <template>
   <div class="flow relative">
-    <UserComponentLoading :show="form.submitStatus === 'PENDING'" />
+    <WidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Submitting your details. Please wait..." />
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>

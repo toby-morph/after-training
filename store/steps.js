@@ -70,9 +70,17 @@ export const mutations = {
     state.startedSteps = false
     state.stepsVersions = []
   },
+  RESET_USER_STEPS_STORE: (state) => {
+    state.currentStep = 0
+    state.completedSteps = []
+    state.startedSteps = false
+  },
 }
 
 export const actions = {
+  resetUserStepsStore({ commit }) {
+    commit('RESET_USER_STEPS_STORE')
+  },
   resetStepsStore({ commit }) {
     commit('RESET_STEPS_STORE')
   },

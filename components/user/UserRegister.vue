@@ -1,6 +1,6 @@
 <template>
   <div class="flow relative">
-    <UserComponentLoading :show="form.submitStatus === 'PENDING'" />
+    <WidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Creating your account. Please wait..." />
     <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
       <p v-html="formFeedback.msg" />
     </UserFormFeedback>
@@ -181,7 +181,6 @@ export default {
             last_name: this.formData.lastName,
             meta: {
               hospital_trust: this.formData.trustHospital,
-              // clinical_grade_experience: 'FY3',
             },
           }
         )

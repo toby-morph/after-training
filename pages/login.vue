@@ -10,20 +10,20 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   mounted(){
     this.logOutExistingUser()
   },
   methods: {
-    // ...mapActions('steps', ['resetStepsStore']),
-    // ...mapActions('trainee', ['resetTraineeStore']),
+    ...mapActions('steps', ['resetUserStepsStore']),
+    ...mapActions('trainee', ['resetTraineeStore']),
     logOutExistingUser(){
       if(this.$auth){
         this.$auth.logout()
-        // this.resetStepsStore()
-        // this.resetTraineeStore()
+        this.resetUserStepsStore()
+        this.resetTraineeStore()
       }
     }    
   }

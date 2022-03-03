@@ -16,7 +16,7 @@ export const currentPage = {
       return this.$route.path.includes('/get-started')
     },
     isInfoPage() {
-      const infoPageRoutes = ['/privacy', '/accessibility', '/cookies', '/settings']
+      const infoPageRoutes = ['/privacy', '/accessibility', '/cookies']
       const isInfoPage = infoPageRoutes.find(
         (route) => route === this.$route.path
       )

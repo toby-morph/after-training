@@ -52,13 +52,6 @@
       >
         Accessibility
       </PitCollapseNavInfoLink>
-      <PitCollapseNavInfoLink
-        route="/settings"
-        :is-enabled="navIsOpen"
-        @enabled-click="toggleCollapseNav"
-      >
-        Settings
-      </PitCollapseNavInfoLink>
     </div>
   </PitCollapseNavWrapper>
 </template>

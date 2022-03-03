@@ -132,16 +132,16 @@ export default {
   generate: {
     fallback: true,
     // Current solution requires steps to be added manually here
-    routes: [
-      '/steps/1',
-      '/steps/2',
-      '/steps/3',
-      '/steps/4',
-      '/steps/5',
-      '/steps/6',
-      '/steps/7',
-      '_nuxt',
-    ],
+    // routes: [
+    //   '/steps/1',
+    //   '/steps/2',
+    //   '/steps/3',
+    //   '/steps/4',
+    //   '/steps/5',
+    //   '/steps/6',
+    //   '/steps/7',
+    //   '_nuxt',
+    // ],
   },
 
   router: {

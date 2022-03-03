@@ -43,7 +43,7 @@ export default ({ params, route, redirect, store }, inject) => {
     store.dispatch('steps/emptyCompletedSteps')
     store.dispatch('steps/setCurrentStep', 0)
     store.dispatch('steps/setStartedSteps', false)
-    store.dispatch('site/hasRefreshed', true)
+    store.dispatch('site/setHasRefreshed', true)
   }
 
   piTool.lastStepVisitedRoute = () => {
