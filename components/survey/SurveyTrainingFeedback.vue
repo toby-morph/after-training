@@ -319,7 +319,6 @@
         <LibBaseButton
           class="ml-auto"
           btn-class="btn-dark"
-          :disabled="$v.$invalid"
           @click.prevent="submit"
         >
           <template #text>
@@ -358,7 +357,7 @@ const sectionOneFieldPresets = {
       label: 'Poor',
     },
   ],
-  layout: 'vertical',
+  layout: 'horizontal',
   instructions: null,
 }
 const sectionTwoFieldPresets = {
