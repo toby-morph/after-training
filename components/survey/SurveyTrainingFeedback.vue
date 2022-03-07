@@ -357,7 +357,7 @@ const sectionOneFieldPresets = {
       label: 'Poor',
     },
   ],
-  layout: 'horizontal',
+  layout: 'horizontal   ',
   instructions: null,
 }
 const sectionTwoFieldPresets = {

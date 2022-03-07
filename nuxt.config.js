@@ -151,8 +151,8 @@ export default {
   publicRuntimeConfig: {
     fullScreen: process.env.FULLSCREEN,
     largeText: process.env.LARGE_TEXT,
-    amplitudeEnabled: process.env.AMPLITUDE_ENABLED,
-    amplitudeApiKey: process.env.AMPLITUDE_API_KEY,
+    GA_Enabled: process.env.GA_ENABLED,
+    GA_Key: process.env.GA_KEY,
     cookieControlEnabled: process.env.COOKIE_CONTROL_ENABLED,
     useNuxtImageModule: process.env.USE_NUXT_IMAGE_MODULE,
     offlineEnabled: process.env.OFFLINE_ENABLED,
