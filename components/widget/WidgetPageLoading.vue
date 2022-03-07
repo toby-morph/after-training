@@ -5,7 +5,7 @@
     text-align="center"
     :show="show"
     theme="dark-primary"
-    :custom-size="['max-w-4xl']"
+    :custom-size="['w-9/12','sm:max-w-sm']"
   >
     <WidgetLoadingIcon fill="white" />
   </LibBaseModal>
