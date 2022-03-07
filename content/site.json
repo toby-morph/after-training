@@ -7,7 +7,7 @@
     "cookie_notice_text": "This website uses cookies to improve your experience. We do NOT use any tracking cookies for targetting ads and we do NOT use cookies that directly identify anyone. Click ACCEPT to enable an optimal experience.",
     "cookie_modal_text": "We only use necessary cookies. We do NOT use cookies that directly identify anyone. We use necessary cookies to enable the video player to work and to manage this cookie notice.",
     "cookie_modal_title": "Cookies used on this site",
-    "non_necessary_cookies_used": false
+    "non_necessary_cookies_used": true
   },
   "site_logo": {
     "url": "logo.svg",
