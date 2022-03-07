@@ -88,9 +88,9 @@
         <LibBaseButton
           class="ml-auto"
           btn-class="btn-dark"
-          :disabled="$v.$invalid"
           @click.prevent="submit"
         >
+          <!-- :disabled="$v.$invalid" -->
           <template #text>
             Submit
           </template>
@@ -246,6 +246,12 @@ export default {
     submit() {
       if (this.$v.$invalid) {
         this.$v.$touch()
+        this.$nextTick(() => {	
+          const firstErrorField = document.querySelector('.form-group-error')
+          if(firstErrorField){
+            this.$scrollTo(firstErrorField, 500, {})
+          }
+        })
       } else {
         this.form.submitStatus = 'PENDING'
         this.submitTrainingLog()
