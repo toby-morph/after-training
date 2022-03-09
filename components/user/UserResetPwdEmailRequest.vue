@@ -61,10 +61,10 @@ export default {
         status: null,
       },
       resetPwdFeedbackMsgs: {
-        instructions: `Please enter the email you registered with. You will receive an email with instructions on resetting your password.`,
+        instructions: `Please enter the email you registered with. You will receive an email with instructions on resetting your password`,
         username_does_not_exist: `The username you have entered has not been recognised. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
         success:
-          'You have been sent an email containing instructions on resetting your password.',
+          'You have been sent an email containing instructions on resetting your password',
         error: `There has been a problem with sending your password reset email. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
       },
       formData: {
@@ -80,7 +80,7 @@ export default {
             label: 'Username',
             feedback: [],
             instructions:
-              'Username is the email with which you were registered on this site.',
+              'Username is the email with which you were registered on this site',
           },
         },
       },

@@ -70,7 +70,7 @@ export default {
         user_new_pwd: `You password has been updated. If you have any problems logging in please email <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
         new_user_register: `If you are a new user, please <a class="underline" href="/register">register</a> to create an account`,
         new_registered_trainee: `Thank you for registering, you can now log in. If you have any problems contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
-        user_not_recognised: `Your username and password have not been recognised. Please try again or <a class="underline" href="/reset-pwd-request">reset your password</a>.`,
+        user_not_recognised: `Your username and password have not been recognised. Please try again or <a class="underline" href="/reset-pwd-request">reset your password</a>`,
       },
       form: {
         submitStatus: null,
@@ -82,7 +82,7 @@ export default {
             label: 'Username',
             feedback: [],
             instructions:
-              'Username is the email with which you were registered on this site.',
+              'Username is the email with which you registered on this site.',
           },
           password: {
             el: 'input',
@@ -91,7 +91,7 @@ export default {
             label: 'Password',
             feedback: [],
             instructions:
-              'Passwords must be at least 8 characters long, contain at least one number, special character (#?!@$%^&*-), uppercase and lowercase letters.',
+              'Passwords must be at least 8 characters long, contain at least one number, special character (#?!@$%^&*-), uppercase and lowercase letters',
           },
         },
       },

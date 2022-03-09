@@ -70,12 +70,12 @@ export default {
       formFeedbackMsgs: {
         invalid_params: `Please click the link in the password reset email you were sent. If you have not received an email, please check your junk folders or <a class="underline" href="/reset-pwd-request">request a new password reset email</a>`,
         username_does_not_exist:
-          `The username you have entered has not been recognised. Please try again or contact ${this.$config.siteAdminEmail}`,
+          `The username you have entered has not been recognised. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
         password_reset_key_invalid: `Your password reset has expired. <a class="underline" href="/reset-pwd-request">Request a new password reset email</a>`,
         password_format_invalid: `Your new password is not strong enough. Please meet the requirements specified next to the 'New password' field`,
         success: `Your password has been updated. Please <a class="underline" href="/login?login=${this.$route.query.login}">log-in</a>`,
         error:
-          `There has been a problem with resetting your password. Please try again or contact ${this.$config.siteAdminEmail}`,
+          `There has been a problem with resetting your password. Please try again or contact <a class="underline" href="mailto:${this.$config.siteAdminEmail}">${this.$config.siteAdminEmail}</a>`,
       },
       formData: {
         newPassword: null,
