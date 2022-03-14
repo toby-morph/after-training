@@ -10,7 +10,7 @@ export default function ({ $config }) {
               id: $config.GA_Key,
               params: {
               'cookie_domain': location.hostname,
-              enabled: localStorage.getItem('GDPR:accepted'), 
+              enabled: false, 
               pageTrackerScreenviewEnabled: true,
               }  
             },

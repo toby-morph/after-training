@@ -5,7 +5,11 @@ export const cookieControl = {
         this.$morphCookies.acceptAll()
         this.$store.dispatch('site/setCurrentUserCookiePrefs', true)
       }
-      this.$gtag.optIn()
+      // Only opt in to GA if GA is enabled
+      if (JSON.parse(this.$config.GA_Enabled)) {
+        // console.log("this.$gtag.optIn()")
+        this.$gtag.optIn()
+      }
     },
     cookieControlDenyAll() {
       if (this.$morphCookies) {
@@ -13,7 +17,11 @@ export const cookieControl = {
 
         this.$store.dispatch('site/setCurrentUserCookiePrefs', false)
       }
-      this.$gtag.optOut()
+      // Only opt out of GA if GA is enabled
+      if (JSON.parse(this.$config.GA_Enabled)) {
+        // console.log("this.$gtag.optOut()")
+        this.$gtag.optOut()
+      }
     },
     showCookieSettingsModal() {
       this.$store.dispatch('site/setCookieSettingsModalShow', true)
