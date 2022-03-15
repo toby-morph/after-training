@@ -1,68 +1,91 @@
 <template>
-  <div class="flow relative">
-    <WidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Creating your account. Please wait..." />
-    <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
-      <p v-html="formFeedback.msg" />
-    </UserFormFeedback>
-    <p>Please complete all fields.</p>
-    <form class="flow flex flex-col">
-      <div v-for="(field, name, index) in form.fields" :key="index">
-        <LibFormGroupInput
-          v-if="field.el === 'input'"
-          v-model.trim="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :field-el="field.name"
-          :input-type="field.inputType"
-          :label="field.label"
-          :instructions="field.instructions"
-          :disabled="field.disabled"
-          :placeholder="field.placeholder"
-          :required="field.required"
-          :feedback="field.feedback"
-          :auto-focus="index === 0"
-          :field-wrapper-classes="field.wrapperClasses"
-          :v="$v.formData[field.name]"
+  <LibFormLayoutWrapper class="sm:w-5/6 max-w-lg">
+    <template #title>
+      Register
+    </template>
+    <template #form>
+      <div class="flow relative">
+        <LibWidgetPageLoading
+          :show="form.submitStatus === 'PENDING'"
+          loading-message="Creating your account. Please wait..."
         />
-        <!-- Form select group -->
-        <LibFormGroupSelect
-          v-if="field.el === 'select'"
-          v-model="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :label="field.label"
-          :disabled="field.disabled"
-          :instructions="field.instructions"
-          :required="field.required"
-          :feedback="field.feedback"
-          :options="field.options"
-          :auto-focus="index === 0"
-          :v="$v.formData[field.name]"
-        />
+        <LibFormLayoutFeedback
+          v-show="formFeedback.msg"
+          :status="formFeedback.status"
+        >
+          <p v-html="formFeedback.msg" />
+        </LibFormLayoutFeedback>
+        <p>Please complete all fields.</p>
+        <form class="flow flex flex-col">
+          <div v-for="(field, name, index) in form.fields" :key="index">
+            <LibFormGroupInput
+              v-if="field.el === 'input'"
+              v-model.trim="$v.formData[field.name].$model"
+              :field-name="field.name"
+              :field-el="field.name"
+              :input-type="field.inputType"
+              :label="field.label"
+              :instructions="field.instructions"
+              :disabled="field.disabled"
+              :placeholder="field.placeholder"
+              :required="field.required"
+              :feedback="field.feedback"
+              :auto-focus="index === 0"
+              :field-wrapper-classes="field.wrapperClasses"
+              :v="$v.formData[field.name]"
+            />
+            <!-- Form select group -->
+            <LibFormGroupSelect
+              v-if="field.el === 'select'"
+              v-model="$v.formData[field.name].$model"
+              :field-name="field.name"
+              :label="field.label"
+              :disabled="field.disabled"
+              :instructions="field.instructions"
+              :required="field.required"
+              :feedback="field.feedback"
+              :options="field.options"
+              :auto-focus="index === 0"
+              :v="$v.formData[field.name]"
+            />
+          </div>
+          <LibBaseButton
+            class="ml-auto"
+            btn-class="btn-dark"
+            :disabled="$v.$invalid"
+            @click.prevent="submit"
+          >
+            <template #text>
+              Register
+            </template>
+          </LibBaseButton>
+        </form>
+        <LibFormLayoutFooter>
+          <template #actions>
+            <LibBaseLink link="/login" link-class="underline">
+              Log-in
+            </LibBaseLink>
+            <LibBaseLink
+              class="ml-auto"
+              link="/reset-pwd-request"
+              link-class="underline"
+            >
+              Forgotten password?
+            </LibBaseLink>
+          </template>
+          <template #additional>
+            <p>
+              If you are having difficulties logging in, please contact <LibBaseLink :link="`mailto:${$config.siteAdminEmail}`" class="underline">
+                {{ $config.siteAdminEmail }}
+              </LibBaseLink>
+            </p>
+          </template>
+        </LibFormLayoutFooter>
       </div>
-      <LibBaseButton
-        class="ml-auto"
-        btn-class="btn-dark"
-        :disabled="$v.$invalid"
-        @click.prevent="submit"
-      >
-        <template #text>
-          Register
-        </template>
-      </LibBaseButton>
-    </form>
-    <UserFormFooter>
-      <LibBaseLink link="/login" link-class="underline">
-        Log-in
-      </LibBaseLink>
-      <LibBaseLink
-        class="ml-auto"
-        link="/reset-pwd-request"
-        link-class="underline"
-      >
-        Forgotten password?
-      </LibBaseLink>
-    </UserFormFooter>
-  </div>
+    </template>
+  </LibFormLayoutWrapper>
 </template>
+
 
 <script>
 import { mapState } from 'vuex'
@@ -149,15 +172,15 @@ export default {
     ...mapState({
       trialSites: (state) => state.site.trialSites,
     }),
-    trustHospitalOptions(){
-      const trustHospitalOptions = this.trialSites.map(trialSite => ({
+    trustHospitalOptions() {
+      const trustHospitalOptions = this.trialSites.map((trialSite) => ({
         value: trialSite.trial_site_code,
         label: trialSite.trial_site,
       }))
       return trustHospitalOptions
-    }
+    },
   },
-  mounted(){
+  mounted() {
     this.form.fields.trustHospital.options = this.trustHospitalOptions
   },
   methods: {
@@ -185,10 +208,11 @@ export default {
           }
         )
         this.form.submitStatus = 'OK'
-        
-        const lastStepVisited = this.$piTool.lastStepVisitedRoute()
-        this.$router.push({ path: `${lastStepVisited}?action=new-trainee&login=${this.formData.userEmail}` })
 
+        const lastStepVisited = this.$piTool.lastStepVisitedRoute()
+        this.$router.push({
+          path: `${lastStepVisited}?action=new-trainee&login=${this.formData.userEmail}`,
+        })
       } catch (error) {
         this.form.submitStatus = 'ERROR'
 

@@ -1,52 +1,69 @@
 <template>
-  <div class="flow relative">
-    <WidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
-    <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
-      <p v-html="formFeedback.msg" />
-    </UserFormFeedback>
-    <form class="flow flex flex-col">
-      <div v-for="(field, name, index) in form.fields" :key="index">
-        <LibFormGroupInput
-          v-if="field.el === 'input'"
-          v-model.trim="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :field-el="field.name"
-          :input-type="field.inputType"
-          :label="field.label"
-          :instructions="field.instructions"
-          :disabled="field.disabled"
-          :placeholder="field.placeholder"
-          :required="field.required"
-          :feedback="field.feedback"
-          :auto-focus="index === 0"
-          :field-wrapper-classes="field.wrapperClasses"
-          :v="$v.formData[field.name]"
-        />
+  <LibFormLayoutWrapper class="sm:w-5/6 max-w-lg">
+    <template #title>
+      Log-in
+    </template>
+    <template #form>
+      <div class="flow relative">
+        <LibWidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
+        <LibFormLayoutFeedback v-show="formFeedback.msg" :status="formFeedback.status">
+          <p v-html="formFeedback.msg" />
+        </LibFormLayoutFeedback>
+        <form class="flow flex flex-col">
+          <div v-for="(field, name, index) in form.fields" :key="index">
+            <LibFormGroupInput
+              v-if="field.el === 'input'"
+              v-model.trim="$v.formData[field.name].$model"
+              :field-name="field.name"
+              :field-el="field.name"
+              :input-type="field.inputType"
+              :label="field.label"
+              :instructions="field.instructions"
+              :disabled="field.disabled"
+              :placeholder="field.placeholder"
+              :required="field.required"
+              :feedback="field.feedback"
+              :auto-focus="index === 0"
+              :field-wrapper-classes="field.wrapperClasses"
+              :v="$v.formData[field.name]"
+            />
+          </div>
+          <LibBaseButton
+            class="ml-auto"
+            btn-class="btn-dark"
+            :disabled="$v.$invalid"
+            @click.prevent="submit"
+          >
+            <template #text>
+              Log In
+            </template>
+          </LibBaseButton>
+        </form>
+        <LibFormLayoutFooter>
+          <template #actions>
+            <LibBaseLink link="/register" link-class="underline">
+              Register
+            </LibBaseLink>
+            <LibBaseLink
+              class="ml-auto"
+              link="/reset-pwd-request"
+              link-class="underline"
+            >
+              Forgotten password?
+            </LibBaseLink>
+          </template>
+          <template #additional>
+            <p>
+              If you are having difficulties logging in, please contact <LibBaseLink :link="`mailto:${$config.siteAdminEmail}`" class="underline">
+                {{ $config.siteAdminEmail }}
+              </LibBaseLink>
+            </p>
+          </template>
+        </LibFormLayoutFooter>
+        </libformlayoutfeedback>
       </div>
-      <LibBaseButton
-        class="ml-auto"
-        btn-class="btn-dark"
-        :disabled="$v.$invalid"
-        @click.prevent="submit"
-      >
-        <template #text>
-          Log In
-        </template>
-      </LibBaseButton>
-    </form>
-    <UserFormFooter>
-      <LibBaseLink link="/register" link-class="underline">
-        Register
-      </LibBaseLink>
-      <LibBaseLink
-        class="ml-auto"
-        link="/reset-pwd-request"
-        link-class="underline"
-      >
-        Forgotten password?
-      </LibBaseLink>
-    </UserFormFooter>
-  </div>
+    </template>
+  </LibFormLayoutWrapper>
 </template>
 
 <script>

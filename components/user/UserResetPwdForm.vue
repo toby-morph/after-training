@@ -1,60 +1,76 @@
 <template>
-  <div class="flow relative">
-    <WidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
-    <UserFormFeedback
-      v-show="formFeedback.msg"
-      :status="formFeedback.status"
-    >
-      <p v-html="formFeedback.msg" />
-    </UserFormFeedback>
-    <form class="flow flex flex-col">
-      <div v-for="(field, name, index) in form.fields" :key="index">
-        <LibFormGroupInput
-          v-if="field.el === 'input'"
-          v-model.trim="$v.formData[field.name].$model"
-          :field-name="field.name"
-          :field-el="field.name"
-          :input-type="field.inputType"
-          :label="field.label"
-          :instructions="field.instructions"
-          :disabled="field.disabled"
-          :placeholder="field.placeholder"
-          :required="field.required"
-          :feedback="field.feedback"
-          :auto-focus="index === 0"
-          :field-wrapper-classes="field.wrapperClasses"
-          :v="$v.formData[field.name]"
-        />
+  <LibFormLayoutWrapper class="sm:w-5/6 max-w-lg">
+    <template #title>
+      Reset password
+    </template>
+    <template #form>
+      <div class="flow relative">
+        <LibWidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
+        <LibFormLayoutFeedback
+          v-show="formFeedback.msg"
+          :status="formFeedback.status"
+        >
+          <p v-html="formFeedback.msg" />
+        </LibFormLayoutFeedback>
+        <form class="flow flex flex-col">
+          <div v-for="(field, name, index) in form.fields" :key="index">
+            <LibFormGroupInput
+              v-if="field.el === 'input'"
+              v-model.trim="$v.formData[field.name].$model"
+              :field-name="field.name"
+              :field-el="field.name"
+              :input-type="field.inputType"
+              :label="field.label"
+              :instructions="field.instructions"
+              :disabled="field.disabled"
+              :placeholder="field.placeholder"
+              :required="field.required"
+              :feedback="field.feedback"
+              :auto-focus="index === 0"
+              :field-wrapper-classes="field.wrapperClasses"
+              :v="$v.formData[field.name]"
+            />
+          </div>
+          <LibBaseButton
+            btn-class="btn-dark"
+            class="ml-auto"
+            :disabled="$v.$invalid || !validQueryParams"
+            @click.prevent="submit"
+          >
+            <template #text>
+              Reset password
+            </template>
+          </LibBaseButton>
+        </form>
+        <LibFormLayoutFooter>
+          <template #actions>
+            <LibBaseLink
+              :is-nuxt-link="true"
+              :link="loginLink"
+              link-class="underline"
+            >
+              Log in
+            </LibBaseLink>
+            <LibBaseLink
+              class="ml-auto"
+              :is-nuxt-link="true"
+              link="/reset-pwd-request"
+              link-class="underline"
+            >
+              Send password reset email
+            </LibBaseLink>
+          </template>
+          <template #additional>
+            <p>
+              If you are having difficulties logging in, please contact <LibBaseLink :link="`mailto:${$config.siteAdminEmail}`" class="underline">
+                {{ $config.siteAdminEmail }}
+              </LibBaseLink>
+            </p>
+          </template>
+        </LibFormLayoutFooter>
       </div>
-      <LibBaseButton
-        btn-class="btn-dark"
-        class="ml-auto"
-        :disabled="$v.$invalid || !validQueryParams"
-        @click.prevent="submit"
-      >
-        <template #text>
-          Reset password
-        </template>
-      </LibBaseButton>
-    </form>
-    <UserFormFooter>
-      <LibBaseLink
-        :is-nuxt-link="true"
-        :link="loginLink"
-        link-class="underline"
-      >
-        Log in
-      </LibBaseLink>
-      <LibBaseLink
-        class="ml-auto"
-        :is-nuxt-link="true"
-        link="/reset-pwd-request"
-        link-class="underline"
-      >
-        Send password reset email
-      </LibBaseLink>
-    </UserFormFooter>
-  </div>
+    </template>
+  </LibFormLayoutWrapper>
 </template>
 
 <script>
