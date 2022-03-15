@@ -21,6 +21,9 @@ body {
   --header-height: 90px;
   --footer-height: 72px;
   --site-logo-width: 100px;
+  @screen xs {
+    --site-logo-width: 90px;
+  }
   @screen sm {
     --site-logo-width: 120px;
   }
