@@ -4,7 +4,7 @@
       Register
     </template>
     <template #form>
-      <div class="flow relative">
+      <div class="flow">
         <LibWidgetPageLoading
           :show="form.submitStatus === 'PENDING'"
           loading-message="Creating your account. Please wait..."

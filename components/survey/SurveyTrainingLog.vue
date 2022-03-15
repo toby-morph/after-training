@@ -4,7 +4,7 @@
       AFTER training log
     </template>
     <template #form>
-      <div class="flow relative">
+      <div class="flow">
         <LibWidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Submitting your details" />
         <LibFormLayoutFeedback v-show="formFeedback.msg" :status="formFeedback.status">
           <p v-html="formFeedback.msg" />

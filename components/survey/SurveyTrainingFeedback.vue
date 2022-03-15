@@ -4,7 +4,7 @@
       AFTER training feedback
     </template>
     <template #form>
-      <div class="flow relative">
+      <div class="flow">
         <LibWidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Submitting feedback. Please wait..." />
         <LibFormLayoutFeedback v-show="formFeedback.msg" :status="formFeedback.status">
           <p v-html="formFeedback.msg" />

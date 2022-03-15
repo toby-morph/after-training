@@ -4,7 +4,7 @@
       Log-in
     </template>
     <template #form>
-      <div class="flow relative">
+      <div class="flow">
         <LibWidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
         <LibFormLayoutFeedback v-show="formFeedback.msg" :status="formFeedback.status">
           <p v-html="formFeedback.msg" />

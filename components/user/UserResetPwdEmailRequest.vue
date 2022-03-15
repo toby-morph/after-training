@@ -4,7 +4,7 @@
       Reset password request
     </template>
     <template #form>
-      <div class="flow relative">
+      <div class="flow">
         <LibWidgetComponentLoading :show="form.submitStatus === 'PENDING'" />
         <LibFormLayoutFeedback
           v-show="resetPwdFeedback.msg"
