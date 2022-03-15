@@ -315,16 +315,17 @@
             :v="$v.formData.anyOtherComments"
           />
         </div>
-
-        <LibBaseButton
-          class="ml-auto"
-          btn-class="btn-dark"
-          @click.prevent="submit"
-        >
-          <template #text>
-            Submit
-          </template>
-        </LibBaseButton>
+        <div class="flex">
+          <LibBaseButton
+            class="ml-auto"
+            btn-class="btn-dark"
+            @click.prevent="submit"
+          >
+            <template #text>
+              Submit
+            </template>
+          </LibBaseButton>
+        </div>
       </form>
     </template>
   </div>
@@ -357,7 +358,7 @@ const sectionOneFieldPresets = {
       label: 'Poor',
     },
   ],
-  layout: 'horizontal   ',
+  layout: 'horizontal',
   instructions: null,
 }
 const sectionTwoFieldPresets = {

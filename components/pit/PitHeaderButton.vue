@@ -50,10 +50,10 @@ export default {
   }
   &:hover {
     .headerButton__label {
-      @apply text-primary-dark;
+      @apply text-primary-mid;
     }
     svg {
-      @apply fill-primary-dark;
+      @apply fill-primary-mid;
     }
     &:after {
       @apply opacity-100;
