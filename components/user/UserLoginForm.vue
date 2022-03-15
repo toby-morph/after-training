@@ -60,7 +60,6 @@
             </p>
           </template>
         </LibFormLayoutFooter>
-        </libformlayoutfeedback>
       </div>
     </template>
   </LibFormLayoutWrapper>

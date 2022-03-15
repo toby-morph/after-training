@@ -1,103 +1,114 @@
 <template>
-  <div class="flow relative">
-    <WidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Submitting your details. Please wait..." />
-    <UserFormFeedback v-show="formFeedback.msg" :status="formFeedback.status">
-      <p v-html="formFeedback.msg" />
-    </UserFormFeedback>
-    <template v-if="surveyOneCompleted">
-      <div v-if="!surveyTwoCompleted" class="flow flex flex-col">
-        <p>
-          We would be grateful if you could spare a minute to complete a <nuxt-link class="underline" to="/survey/training-feedback">
-            short survey
-          </nuxt-link> on your opinion of the training.
-        </p>
-        <LibBaseButtonLink class="block ml-auto" link-url="/survey/training-feedback">
-          <template #text>
-            Complete short survey
-          </template>
-        </LibBaseButtonLink>
+  <LibFormLayoutWrapper class="sm:w-5/6 max-w-2xl">
+    <template #title>
+      AFTER training log
+    </template>
+    <template #form>
+      <div class="flow relative">
+        <LibWidgetPageLoading :show="form.submitStatus === 'PENDING'" loading-message="Submitting your details" />
+        <LibFormLayoutFeedback v-show="formFeedback.msg" :status="formFeedback.status">
+          <p v-html="formFeedback.msg" />
+        </LibFormLayoutFeedback>
+        <template v-if="surveyOneCompleted">
+          <div v-if="!surveyTwoCompleted" class="flow flex flex-col">
+            <p>
+              We would be grateful if you could spare a minute to complete a <nuxt-link class="underline" to="/survey/training-feedback">
+                short survey
+              </nuxt-link> on your opinion of the training.
+            </p>
+            <LibBaseButtonLink class="block ml-auto" link-url="/survey/training-feedback">
+              <template #text>
+                Complete short survey
+              </template>
+            </LibBaseButtonLink>
+          </div>
+        </template>
+        <template v-else>
+          <p>
+            Please complete all fields. After this form has been submitted, we will
+            email you a copy of your training certificate in PDF format.
+          </p>
+          <form class="flow flex flex-col">
+            <div v-for="(field, name, index) in form.fields" :key="index">
+              <LibFormGroupInput
+                v-if="field.el === 'input'"
+                v-model.trim="$v.formData[field.name].$model"
+                :field-name="field.name"
+                :field-el="field.name"
+                :input-type="field.inputType"
+                :label="field.label"
+                :instructions="field.instructions"
+                :disabled="field.disabled"
+                :placeholder="field.placeholder"
+                :required="field.required"
+                :feedback="field.feedback"
+                :auto-focus="index === 0"
+                :field-wrapper-classes="field.wrapperClasses"
+                :v="$v.formData[field.name]"
+                :hidden="field.hidden ? field.hidden() : false"
+              />
+              <!-- Form select group -->
+              <LibFormGroupSelect
+                v-if="field.el === 'select'"
+                v-model="$v.formData[field.name].$model"
+                :field-name="field.name"
+                :label="field.label"
+                :disabled="field.disabled"
+                :instructions="field.instructions"
+                :required="field.required"
+                :feedback="field.feedback"
+                :options="field.options"
+                :auto-focus="index === 0"
+                :v="$v.formData[field.name]"
+              />
+              <!-- Form checkbox group -->
+              <LibFormGroupCheckbox
+                v-if="field.el === 'checkbox'"
+                v-model="$v.formData[field.name].$model"
+                :field-name="field.name"
+                :label="field.label"
+                :disabled="field.disabled"
+                :instructions="field.instructions"
+                :required="field.required"
+                :feedback="field.feedback"
+                :options="field.options"
+                :auto-focus="index === 0"
+                :v="$v.formData[field.name]"
+              />
+              <!-- Form radio group -->
+              <LibFormGroupRadioButton
+                v-if="field.el === 'radio'"
+                v-model="$v.formData[field.name].$model"
+                :field-name="field.name"
+                :label="field.label"
+                :disabled="field.disabled"
+                :instructions="field.instructions"
+                :required="field.required"
+                :feedback="field.feedback"
+                :options="field.options"
+                :auto-focus="index === 0"
+                :v="$v.formData[field.name]"
+              />
+            </div>
+            <LibFormLayoutFooter>
+              <template #actions>
+                <LibBaseButton
+                  class="ml-auto"
+                  btn-class="btn-dark"
+                  @click.prevent="submit"
+                >
+                  <!-- :disabled="$v.$invalid" -->
+                  <template #text>
+                    Submit
+                  </template>
+                </LibBaseButton>
+              </template>
+            </LibFormLayoutFooter>
+          </form>
+        </template>
       </div>
     </template>
-    <template v-else>
-      <p>
-        Please complete all fields. After this form has been submitted, we will
-        email you a copy of your training certificate in PDF format.
-      </p>
-      <form class="flow flex flex-col">
-        <div v-for="(field, name, index) in form.fields" :key="index">
-          <LibFormGroupInput
-            v-if="field.el === 'input'"
-            v-model.trim="$v.formData[field.name].$model"
-            :field-name="field.name"
-            :field-el="field.name"
-            :input-type="field.inputType"
-            :label="field.label"
-            :instructions="field.instructions"
-            :disabled="field.disabled"
-            :placeholder="field.placeholder"
-            :required="field.required"
-            :feedback="field.feedback"
-            :auto-focus="index === 0"
-            :field-wrapper-classes="field.wrapperClasses"
-            :v="$v.formData[field.name]"
-            :hidden="field.hidden ? field.hidden() : false"
-          />
-          <!-- Form select group -->
-          <LibFormGroupSelect
-            v-if="field.el === 'select'"
-            v-model="$v.formData[field.name].$model"
-            :field-name="field.name"
-            :label="field.label"
-            :disabled="field.disabled"
-            :instructions="field.instructions"
-            :required="field.required"
-            :feedback="field.feedback"
-            :options="field.options"
-            :auto-focus="index === 0"
-            :v="$v.formData[field.name]"
-          />
-          <!-- Form checkbox group -->
-          <LibFormGroupCheckbox
-            v-if="field.el === 'checkbox'"
-            v-model="$v.formData[field.name].$model"
-            :field-name="field.name"
-            :label="field.label"
-            :disabled="field.disabled"
-            :instructions="field.instructions"
-            :required="field.required"
-            :feedback="field.feedback"
-            :options="field.options"
-            :auto-focus="index === 0"
-            :v="$v.formData[field.name]"
-          />
-          <!-- Form radio group -->
-          <LibFormGroupRadioButton
-            v-if="field.el === 'radio'"
-            v-model="$v.formData[field.name].$model"
-            :field-name="field.name"
-            :label="field.label"
-            :disabled="field.disabled"
-            :instructions="field.instructions"
-            :required="field.required"
-            :feedback="field.feedback"
-            :options="field.options"
-            :auto-focus="index === 0"
-            :v="$v.formData[field.name]"
-          />
-        </div>
-        <LibBaseButton
-          class="ml-auto"
-          btn-class="btn-dark"
-          @click.prevent="submit"
-        >
-          <!-- :disabled="$v.$invalid" -->
-          <template #text>
-            Submit
-          </template>
-        </LibBaseButton>
-      </form>
-    </template>
-  </div>
+  </LibFormLayoutWrapper>
 </template>
 
 <script>
