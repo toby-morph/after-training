@@ -207,7 +207,7 @@ module.exports = {
           /-(leave|enter|appear)(|-(to|from|active))$/,
           /^(?!(|.*?:)cursor-move).+-move$/,
           /^nuxt-link(|-exact)-active$/,
-          /^(text|leading|text-xs|leading-xs)-h/,
+          /(text|leading|text-xs|leading-xs)-h/,
           /^(xs|sm|md|lg|xl)(|:(hidden|flex))$/,
         ],
       },
