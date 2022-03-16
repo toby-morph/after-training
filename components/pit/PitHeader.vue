@@ -1,6 +1,6 @@
 <template>
-  <header class="py-2.5 bg-white">
-    <section class="section flex flex-row items-center">
+  <header class="header bg-white">
+    <section class="section flex flex-row items-center py-2.5">
       <div class="site-logo mr-auto">
         <nuxt-link
           class="
@@ -60,4 +60,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.section {
+  height: var(--header-height);
+}
+.site-logo {
+  width: var(--site-logo-width);
+}
+</style>

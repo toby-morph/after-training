@@ -77,15 +77,6 @@ body {
   }
 }
 
-#appContent { 
-  > .header {
-    height: var(--header-height);
-  }
-  .site-logo {
-    width: var(--site-logo-width);
-  }
-}
-
 #appContent > .header,
 #appLayout .main > .section,
 #appLayout > .footer {
