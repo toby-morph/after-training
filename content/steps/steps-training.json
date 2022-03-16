@@ -10,7 +10,7 @@
       "step_content": [
         {
           "type": "text_and_image",
-          "text": "**This tool will guide you through the Participant Information to help you decide whether to take part in the study.**\n\nWhen you press START below, each step will be presented in full screen mode to remove distractions. If you would prefer your normal view you can change back using the fullscreen button in the header.\n\nFollow the simple step by step process, reading to the bottom of each page before you move on to the next.\n\nWhen you have viewed all of the steps you can return to the main study website or CONSENT to take part in the study.",
+          "text": "**This tool will guide you through the AFTER Training Tool to certify that you have been trained in relation to the study.**\n\nWhen you press START below, each step will be presented in full screen mode to remove distractions. If you would prefer your normal view you can change back using the fullscreen button in the header.\n\nFollow the simple step by step process, reading to the bottom of each page before you move on to the next.\n\nWhen you have viewed all of the steps you can return to the main study website and will recieve a certificate to show that you have completed the training.",
           "image": {
             "url": "welcome.svg",
             "alt": "Illustration of carer and child using a computer to research a trial"
@@ -24,8 +24,8 @@
       "step_number": "1",
       "step_title": "Study Participant Information",
       "step_metadata": {
-        "html_title": "Study Participant Information",
-        "html_desc": "Study Participant Information"
+        "html_title": "Practitioner Training",
+        "html_desc": "Practitioner Training"
       },
       "step_content": [
         {
@@ -36,7 +36,7 @@
             "video_title": "Participant Information Animation",
             "video_transcript": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet tincidunt mi ac tincidunt. In in orci ante. Curabitur eget accumsan tellus. Fusce ut felis finibus, tempus lorem vitae, gravida augue. Pellentesque aliquam ipsum odio, vel consectetur felis porttitor rhoncus. Curabitur placerat, sem pulvinar lobortis bibendum, dui risus elementum nulla, pharetra commodo odio urna vitae purus. Maecenas iaculis gravida placerat. Cras ac posuere tortor. Aenean ultricies enim enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam tortor dolor, egestas vitae efficitur in, malesuada sed felis. Etiam libero massa, sodales eu pulvinar vitae, bibendum bibendum lectus. Aenean nec faucibus purus, non gravida ligula. Nullam fringilla arcu id sapien luctus bibendum. Nullam erat dolor, sodales ut fringilla ultricies, placerat at lacus.\n\nPhasellus massa nunc, laoreet in dolor a, molestie malesuada erat. Phasellus a diam sit amet urna cursus mollis. Ut a est porttitor, bibendum quam sit amet, placerat mauris. Morbi non velit venenatis orci viverra ultricies. Phasellus in urna non risus consectetur pulvinar. Morbi a nisi a mi varius ullamcorper. Aliquam volutpat elit erat, at ultricies purus iaculis a. Etiam in diam mollis, faucibus neque sit amet, pretium diam.\n\nDuis accumsan sem ipsum, in ultricies elit elementum ac. Phasellus quis felis a dui dictum ullamcorper id sit amet tortor. Praesent viverra et justo vitae dignissim. Nam bibendum, eros sed ultricies vulputate, leo purus egestas purus, ac porttitor sem libero nec purus. Curabitur facilisis vulputate eros, ac auctor dolor posuere vel. Phasellus rhoncus arcu id arcu accumsan, ut maximus metus tempor. Nulla semper nibh elit, vestibulum fermentum erat pulvinar id."
           },
-          "text": "**This first section should use very accessible language to introduce the study and provide a general description of the proposed research. It may also include the invitation to take part.**\n\nPlease watch our animation about the study.",
+          "text": "**Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam laoreet tincidunt mi ac tincidunt. In in orci ante. Curabitur eget accumsan tellus. Fusce ut felis finibus, tempus lorem vitae, gravida augue. Pellentesque aliquam ipsum odio, vel consectetur felis porttitor rhoncus. Curabitur placerat, sem pulvinar lobortis bibendum, dui risus elementum nulla, pharetra commodo odio urna vitae purus. Maecenas iaculis gravida placerat.**\n\nPlease watch our animation about the study.",
           "section_label": "This first section..."
         }
       ]
@@ -51,7 +51,7 @@
       "step_content": [
         {
           "type": "text_and_image",
-          "text": "**Thank you for taking the time to read this Participant Information.**\n\nIf you are clear that you want to take part in the study please select the SCREENING AND CONSENT button below.\n\nIf you need more information please return to the Study Website.\n\nOr if you have any questions get in touch:\n\nEmail: trialteam@website.com\n\nPhone: 0123456789",
+          "text": "**Thank you for taking the time to read this Training Tool.**\n\nIf you are happy you have been sufficiently trained in tthis study please select the GET CERTIFICATE button below.\n\nIf you need more information please return to the Study Website.\n\nOr if you have any questions get in touch:\n\nEmail: trialteam@website.com\n\nPhone: 0123456789",
           "image": {
             "url": "thank-you.svg",
             "alt": "Illustration of a doctor and nurse giving the thumbs up"
