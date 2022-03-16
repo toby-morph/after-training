@@ -10,7 +10,7 @@
       "step_content": [
         {
           "type": "text_and_image",
-          "text": "**This tool will guide you through the AFTER Training Tool to certify that you have been trained in relation to the study.**\n\nWhen you press START below, each step will be presented in full screen mode to remove distractions. If you would prefer your normal view you can change back using the fullscreen button in the header.\n\nFollow the simple step by step process, reading to the bottom of each page before you move on to the next.\n\nWhen you have viewed all of the steps you can return to the main study website and will recieve a certificate to show that you have coompleted the training.",
+          "text": "**This tool will guide you through the AFTER Training Tool to certify that you have been trained in relation to the study.**\n\nWhen you press START below, each step will be presented in full screen mode to remove distractions. If you would prefer your normal view you can change back using the fullscreen button in the header.\n\nFollow the simple step by step process, reading to the bottom of each page before you move on to the next.\n\nWhen you have viewed all of the steps you can return to the main study website and will recieve a certificate to show that you have completed the training.",
           "image": {
             "url": "welcome.svg",
             "alt": "Illustration of carer and child using a computer to research a trial"
@@ -24,8 +24,8 @@
       "step_number": "1",
       "step_title": "Study Participant Information",
       "step_metadata": {
-        "html_title": "Study Participant Information",
-        "html_desc": "Study Participant Information"
+        "html_title": "Practitioner Training",
+        "html_desc": "Practitioner Training"
       },
       "step_content": [
         {
