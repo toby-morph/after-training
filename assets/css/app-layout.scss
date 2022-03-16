@@ -21,7 +21,7 @@ body {
   --header-height: 90px;
   --footer-height: 72px;
   --site-logo-width: 100px;
-  @screen xs {
+  @screen xxs {
     --site-logo-width: 90px;
   }
   @screen sm {
