@@ -603,7 +603,7 @@ export default {
       try {
         await this.$axios.post(
           this.$config.wpHeadlessUrl +
-            `/wp-json/digitrial/v1/user/${this.traineeId}/survey/update`,
+            `/wp-json/digitrial/v1/user/surveys/${this.traineeId}/update`,
           {
             survey_two: {
               ...this.formData,

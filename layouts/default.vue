@@ -10,7 +10,7 @@
       <LibSkipTo to="main" label="Skip to main content" />
       <UserPreNav />
       <!-- <PitMultiVersionPreNav v-if="isMultiVersion" /> -->
-      <PitHeader class="header" />
+      <PitHeader />
       <Nuxt id="main" class="flex-grow" />
     </div>
     <PitFooter v-if="showPitFooter" class="footer" theme="primary" />
