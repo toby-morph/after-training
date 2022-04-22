@@ -272,7 +272,7 @@ export default {
       try {
         await this.$axios.post(
           this.$config.wpHeadlessUrl +
-            `/wp-json/digitrial/v1/user/surveys/${this.traineeId}/update`,
+            `/wp-json/digitrial/v1/surveys/user/${this.traineeId}/update`,
           {
             survey_one: {
               confirm_completion: true,
