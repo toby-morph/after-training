@@ -69,6 +69,8 @@
 import { required, email, minLength } from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
 
+import { GAMethods } from '@/mixins/GAMethods.js'
+
 const notTempPassword = (value) => value !== 'temp'
 
 export default {
@@ -194,6 +196,8 @@ export default {
         this.updateLastLogin(this.$auth.user.id)
         this.presetCompletedSteps(this.$auth.user.meta.last_step)
         this.presetUserSurveyStatus(this.$auth.user.meta)
+
+        this.gaLogEvent('login',{ 'method': 'WP headless' })
 
         this.form.submitStatus = 'OK'
 
