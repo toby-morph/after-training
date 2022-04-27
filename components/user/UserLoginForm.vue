@@ -193,11 +193,16 @@ export default {
           },
         })
 
-        this.updateLastLogin(this.$auth.user.id)
+        const userId = this.$auth.user.id
+        this.updateLastLogin(userId)
         this.presetCompletedSteps(this.$auth.user.meta.last_step)
         this.presetUserSurveyStatus(this.$auth.user.meta)
 
         this.gaLogEvent('login',{ 'method': 'WP headless' })
+        this.$gtag.config({
+          'user_id': userId,
+          'trainee_id': userId
+        })
 
         this.form.submitStatus = 'OK'
 

@@ -9,7 +9,10 @@
 <script>
 import { mapActions } from 'vuex'
 
+import { GAMethods } from '@/mixins/GAMethods.js'
+
 export default {
+  mixins: [GAMethods],
   mounted(){
     this.logOutExistingUser()
   },
@@ -21,6 +24,7 @@ export default {
         this.$auth.logout()
         this.resetUserStepsStore()
         this.resetTraineeStore()
+        this.gaLogEvent('User: log out')
       }
     }    
   }
