@@ -109,6 +109,15 @@ module.exports = {
     },
     fontFamily: {
       sans: ['var(--font-family)', ...defaultTheme.fontFamily.sans],
+      base: 'var(--font-family-base)', 
+      lead: 'var(--font-family-lead)', 
+      bold: 'var(--font-family-bold)', 
+      small: 'var(--font-family-small)', 
+      h5: 'var(--font-family-h5)',
+      h4: 'var(--font-family-h4)',
+      h3: 'var(--font-family-h3)',
+      h2: 'var(--font-family-h2)',
+      h1: 'var(--font-family-h1)',
     },
     fill: (theme) => theme('colors'),
     extend: {

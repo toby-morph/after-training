@@ -74,6 +74,7 @@ import { GAMethods } from '@/mixins/GAMethods.js'
 const notTempPassword = (value) => value !== 'temp'
 
 export default {
+  mixins: [GAMethods],
   data() {
     return {
       formData: {
