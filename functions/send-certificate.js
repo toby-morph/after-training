@@ -13,7 +13,7 @@ exports.handler = async (event) => {
 
   try {
     const response = await axios.get(
-      WP_HEADLESS_URL + `/wp-json/digitrial/v1/user/${data.userId}/send-certificate`,
+      WP_HEADLESS_URL + `/wp-json/digitrial/v1/certificates/users/${data.userId}/send-certificate`,
       {
         auth: {
           username: APP_ADMIN_USER,
